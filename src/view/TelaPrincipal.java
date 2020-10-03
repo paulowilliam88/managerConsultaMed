@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package view;
 
 
@@ -36,6 +32,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         btnCadPacientes = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         btnAgenda = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         btnFecharBemVindo = new javax.swing.JButton();
         barraFrameTelaPrincipal = new javax.swing.JMenuBar();
@@ -61,17 +58,17 @@ public class TelaPrincipal extends javax.swing.JFrame {
         frameInterno.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         frameInterno.setLayout(null);
 
-        btnCadMedicos.setText("MÉDICOS");
-        btnCadMedicos.setToolTipText("Cadastrar novo Médico");
+        btnCadMedicos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/btnMedico.png"))); // NOI18N
+        btnCadMedicos.setToolTipText("Cadastro de Médicos");
         btnCadMedicos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCadMedicosActionPerformed(evt);
             }
         });
         frameInterno.add(btnCadMedicos);
-        btnCadMedicos.setBounds(10, 0, 100, 60);
+        btnCadMedicos.setBounds(20, 0, 80, 60);
 
-        btnCadEnfermeiros.setText("COLABORADOR");
+        btnCadEnfermeiros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/colaborador.png"))); // NOI18N
         btnCadEnfermeiros.setToolTipText("Cadastrar novo colaborador.");
         btnCadEnfermeiros.setMaximumSize(new java.awt.Dimension(79, 23));
         btnCadEnfermeiros.setMinimumSize(new java.awt.Dimension(79, 23));
@@ -81,14 +78,19 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
         frameInterno.add(btnCadEnfermeiros);
-        btnCadEnfermeiros.setBounds(130, 0, 120, 60);
+        btnCadEnfermeiros.setBounds(130, 0, 90, 60);
 
-        btnCadPacientes.setText("PACIENTES");
+        btnCadPacientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/pacienteIcon_1.png"))); // NOI18N
         btnCadPacientes.setToolTipText("Cadastrar novo paciente.");
         btnCadPacientes.setMaximumSize(new java.awt.Dimension(79, 23));
         btnCadPacientes.setMinimumSize(new java.awt.Dimension(79, 23));
+        btnCadPacientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCadPacientesActionPerformed(evt);
+            }
+        });
         frameInterno.add(btnCadPacientes);
-        btnCadPacientes.setBounds(280, 0, 110, 60);
+        btnCadPacientes.setBounds(250, 0, 90, 60);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -96,10 +98,20 @@ public class TelaPrincipal extends javax.swing.JFrame {
         frameInterno.add(jLabel2);
         jLabel2.setBounds(20, 80, 110, 15);
 
-        btnAgenda.setText("AGENDA");
+        btnAgenda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/agenda.png"))); // NOI18N
         btnAgenda.setToolTipText("Visualizar agendamentos.");
+        btnAgenda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgendaActionPerformed(evt);
+            }
+        });
         frameInterno.add(btnAgenda);
-        btnAgenda.setBounds(10, 110, 100, 50);
+        btnAgenda.setBounds(20, 120, 50, 40);
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/consulta.png"))); // NOI18N
+        jButton1.setToolTipText("Abrir Consulta");
+        frameInterno.add(jButton1);
+        jButton1.setBounds(370, 0, 90, 60);
 
         internalFrameBemVindo.getContentPane().add(frameInterno);
         frameInterno.setBounds(0, 50, 520, 190);
@@ -107,7 +119,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel1.setText("CADASTRO");
         internalFrameBemVindo.getContentPane().add(jLabel1);
-        jLabel1.setBounds(20, 30, 80, 15);
+        jLabel1.setBounds(20, 20, 80, 15);
 
         btnFecharBemVindo.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
         btnFecharBemVindo.setText("FECHAR");
@@ -117,10 +129,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
         internalFrameBemVindo.getContentPane().add(btnFecharBemVindo);
-        btnFecharBemVindo.setBounds(443, 0, 70, 26);
+        btnFecharBemVindo.setBounds(380, 10, 70, 26);
 
         getContentPane().add(internalFrameBemVindo);
-        internalFrameBemVindo.setBounds(0, 110, 530, 260);
+        internalFrameBemVindo.setBounds(20, 80, 550, 260);
 
         menuCadastro.setText("Cadastro");
 
@@ -185,7 +197,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         setJMenuBar(barraFrameTelaPrincipal);
 
-        setSize(new java.awt.Dimension(548, 428));
+        setSize(new java.awt.Dimension(605, 470));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -228,6 +240,17 @@ public class TelaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
+    private void btnCadPacientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadPacientesActionPerformed
+       PacienteView telaPaciente = new PacienteView();
+       telaPaciente.setVisible(true);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCadPacientesActionPerformed
+
+    private void btnAgendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgendaActionPerformed
+       AgendaView agView = new AgendaView();
+       agView.setVisible(true);
+    }//GEN-LAST:event_btnAgendaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -268,7 +291,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuBar barraFrameTelaPrincipal;
     private javax.swing.JButton btnAgenda;
     private javax.swing.JButton btnCadEnfermeiros;
-    private javax.swing.JButton btnCadMedicos;
+    public javax.swing.JButton btnCadMedicos;
     private javax.swing.JButton btnCadPacientes;
     private javax.swing.JButton btnFecharBemVindo;
     private javax.swing.JMenuItem cadEnfermeiro;
@@ -276,7 +299,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem cadPaciente;
     private javax.swing.JMenu cadUsuario;
     private javax.swing.JPanel frameInterno;
-    private javax.swing.JInternalFrame internalFrameBemVindo;
+    public javax.swing.JInternalFrame internalFrameBemVindo;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenuItem jMenuItem1;

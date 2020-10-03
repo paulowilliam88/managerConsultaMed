@@ -103,7 +103,7 @@ public class TelaLogin extends javax.swing.JFrame {
         TelaPrincipal tela = new TelaPrincipal();
                 tela.setVisible(true);
       }else{
-          JOptionPane.showMessageDialog(null,"Erro:");
+          JOptionPane.showMessageDialog(null,"Nome de usuário ou senha incorreto!");
       }
                 
     }//GEN-LAST:event_btnAcessarActionPerformed

@@ -40,6 +40,7 @@ public class FuncionarioTabModel extends AbstractTableModel{
         return "";
     }
     
+    @Override
     public String getColumnName(int colunas){
         if(colunas==COL_ID_FUNCIONARIO)return "ID";
         if(colunas==COL_NOME_FUNCIONARIO)return "Nome";

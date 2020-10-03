@@ -24,8 +24,7 @@ import javax.swing.JOptionPane;
  * @author Paulo
  */
 public class FuncionarioDao {
-    private Connection conn;
-    
+    private Connection conn;    
     private PreparedStatement stmt;
     private Statement st;
     public ResultSet rs;

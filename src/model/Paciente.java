@@ -10,8 +10,15 @@ public class Paciente {
   private int idPaciente;  
   private String nome;
   private int idade;
-  private int telefone;
+  private String rgPaciente;
+  private String telefone;
 
+    public String getRgPaciente(){
+        return rgPaciente;
+    }
+    public void setRgPaciente(String rgPaciente){
+        this.rgPaciente = rgPaciente;
+    }
     public int getIdPaciente() {
         return idPaciente;
     }
@@ -36,11 +43,11 @@ public class Paciente {
         this.idade = idade;
     }
 
-    public int getTelefone() {
+    public String getTelefone() {
         return telefone;
     }
 
-    public void setTelefone(int telefone) {
+    public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
      

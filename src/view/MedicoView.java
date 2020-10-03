@@ -8,7 +8,6 @@ import model.Medico;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import table.MedicoTabModel;
-import java.sql.*;
 import javax.swing.JOptionPane;
 import net.sf.jasperreports.view.JasperViewer;
 
@@ -177,7 +176,7 @@ public class MedicoView extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 508, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(btnRelatorioMedicos)
@@ -212,30 +211,20 @@ public class MedicoView extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         setBounds(0, 0, 580, 426);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-        //if(txtCRM.getText().equals("")){
             med.setCrm_medico(Integer.parseInt(txtCRM.getText()));
             med.setNome_medico(txtNomeMedico.getText());
             med.setEspecialidade(txtEspecialidade.getText());
             med.setEspecialidade((String) cbEspecialidade.getSelectedItem());
             mdao.cadastrarMedico(med);
             tbMedico.setModel(new MedicoTabModel(new MedicoDao().listarTodos()));
-        /*}else{
-            med.setCrm_medico(Integer.parseInt(txtCRM.getText()));
-            med.setNome_medico(txtNomeMedico.getText());
-            med.setEspecialidade(txtEspecialidade.getText());
-            mdao.alterarMedico(med);
-        }
-        tbMedico.setModel(new MedicoTabModel(new MedicoDao().listarTodos()));
-        txtCRM.setText("");
-        txtNomeMedico.setText("");
-        txtEspecialidade.setText("");*/
+        
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void tbMedicoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbMedicoMouseClicked
@@ -249,7 +238,6 @@ public class MedicoView extends javax.swing.JFrame {
     private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
             med.setCrm_medico(Integer.parseInt(txtCRM.getText()));
             med.setNome_medico(txtNomeMedico.getText());
-            //med.setEspecialidade(txtEspecialidade.getText());
             med.setEspecialidade((String) cbEspecialidade.getSelectedItem());
             mdao.alterarMedico(med);
             tbMedico.setModel(new MedicoTabModel(new MedicoDao().listarTodos()));

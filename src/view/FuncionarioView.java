@@ -53,7 +53,18 @@ public class FuncionarioView extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         txtPesquisarFuncionario = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+            public void windowDeactivated(java.awt.event.WindowEvent evt) {
+                formWindowDeactivated(evt);
+            }
+        });
 
         jLabel1.setText("ID:");
 
@@ -270,6 +281,19 @@ public class FuncionarioView extends javax.swing.JFrame {
          tbFuncionario.setModel(new FuncionarioTabModel(new FuncionarioDao().listarFuncionario()));   
         }
     }//GEN-LAST:event_btnApagarFuncionarioActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formWindowClosing
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_formWindowClosed
+
+    private void formWindowDeactivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowDeactivated
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formWindowDeactivated
 
     /**
      * @param args the command line arguments
