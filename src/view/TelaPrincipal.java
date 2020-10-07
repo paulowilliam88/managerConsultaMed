@@ -35,6 +35,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         btnFecharBemVindo = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
         barraFrameTelaPrincipal = new javax.swing.JMenuBar();
         menuCadastro = new javax.swing.JMenu();
         cadMedico = new javax.swing.JMenuItem();
@@ -98,7 +99,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         frameInterno.add(jLabel2);
         jLabel2.setBounds(20, 80, 110, 15);
 
-        btnAgenda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/agenda.png"))); // NOI18N
+        btnAgenda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/agenda.png"))); // NOI18N
         btnAgenda.setToolTipText("Visualizar agendamentos.");
         btnAgenda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -114,7 +115,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jButton1.setBounds(370, 0, 90, 60);
 
         internalFrameBemVindo.getContentPane().add(frameInterno);
-        frameInterno.setBounds(0, 50, 520, 190);
+        frameInterno.setBounds(0, 60, 500, 180);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel1.setText("CADASTRO");
@@ -132,7 +133,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
         btnFecharBemVindo.setBounds(380, 10, 70, 26);
 
         getContentPane().add(internalFrameBemVindo);
-        internalFrameBemVindo.setBounds(20, 80, 550, 260);
+        internalFrameBemVindo.setBounds(30, 80, 500, 260);
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/0798adf9c191e928d86114726aaee261.jpg"))); // NOI18N
+        jLabel3.setText("jLabel3");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(0, -20, 560, 420);
 
         menuCadastro.setText("Cadastro");
 
@@ -197,7 +203,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         setJMenuBar(barraFrameTelaPrincipal);
 
-        setSize(new java.awt.Dimension(605, 470));
+        setSize(new java.awt.Dimension(575, 454));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -303,6 +309,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenu mSair;

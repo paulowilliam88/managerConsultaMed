@@ -44,7 +44,9 @@ public class TelaLogin extends javax.swing.JFrame {
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         getContentPane().setLayout(null);
 
-        btnAcessar.setText("Acessar");
+        btnAcessar.setForeground(new java.awt.Color(0, 0, 0));
+        btnAcessar.setText("Entrar");
+        btnAcessar.setBorder(null);
         btnAcessar.setName("btnAcessar"); // NOI18N
         btnAcessar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -52,9 +54,10 @@ public class TelaLogin extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnAcessar);
-        btnAcessar.setBounds(200, 200, 73, 23);
+        btnAcessar.setBounds(190, 190, 70, 30);
 
-        btnSair.setText("Sair");
+        btnSair.setForeground(new java.awt.Color(0, 0, 0));
+        btnSair.setText("Cancelar");
         btnSair.setName("btnSair"); // NOI18N
         btnSair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -62,7 +65,7 @@ public class TelaLogin extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnSair);
-        btnSair.setBounds(300, 200, 51, 23);
+        btnSair.setBounds(280, 190, 90, 32);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/login.png"))); // NOI18N
         getContentPane().add(jLabel2);
@@ -85,7 +88,7 @@ public class TelaLogin extends javax.swing.JFrame {
         getContentPane().add(jLabel1);
         jLabel1.setBounds(4, 4, 500, 260);
 
-        setSize(new java.awt.Dimension(522, 307));
+        setSize(new java.awt.Dimension(521, 302));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
