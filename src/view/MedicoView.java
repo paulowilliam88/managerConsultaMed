@@ -1,4 +1,3 @@
-
 package view;
 
 import com.mysql.jdbc.Connection;
@@ -11,10 +10,11 @@ import table.MedicoTabModel;
 import javax.swing.JOptionPane;
 import net.sf.jasperreports.view.JasperViewer;
 
-
 public class MedicoView extends javax.swing.JFrame {
+
     Medico med = new Medico();
-    MedicoDao mdao= new MedicoDao();
+    MedicoDao mdao = new MedicoDao();
+
     public MedicoView() {
         initComponents();
         setLocationRelativeTo(null);
@@ -218,13 +218,13 @@ public class MedicoView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-            med.setCrm_medico(Integer.parseInt(txtCRM.getText()));
-            med.setNome_medico(txtNomeMedico.getText());
-            med.setEspecialidade(txtEspecialidade.getText());
-            med.setEspecialidade((String) cbEspecialidade.getSelectedItem());
-            mdao.cadastrarMedico(med);
-            tbMedico.setModel(new MedicoTabModel(new MedicoDao().listarTodos()));
-        
+        med.setCrm_medico(Integer.parseInt(txtCRM.getText()));
+        med.setNome_medico(txtNomeMedico.getText());
+        med.setEspecialidade(txtEspecialidade.getText());
+        med.setEspecialidade((String) cbEspecialidade.getSelectedItem());
+        mdao.cadastrarMedico(med);
+        tbMedico.setModel(new MedicoTabModel(new MedicoDao().listarTodos()));
+
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void tbMedicoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbMedicoMouseClicked
@@ -236,11 +236,11 @@ public class MedicoView extends javax.swing.JFrame {
     }//GEN-LAST:event_tbMedicoMouseClicked
 
     private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
-            med.setCrm_medico(Integer.parseInt(txtCRM.getText()));
-            med.setNome_medico(txtNomeMedico.getText());
-            med.setEspecialidade((String) cbEspecialidade.getSelectedItem());
-            mdao.alterarMedico(med);
-            tbMedico.setModel(new MedicoTabModel(new MedicoDao().listarTodos()));
+        med.setCrm_medico(Integer.parseInt(txtCRM.getText()));
+        med.setNome_medico(txtNomeMedico.getText());
+        med.setEspecialidade((String) cbEspecialidade.getSelectedItem());
+        mdao.alterarMedico(med);
+        tbMedico.setModel(new MedicoTabModel(new MedicoDao().listarTodos()));
     }//GEN-LAST:event_btnAtualizarActionPerformed
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
@@ -253,13 +253,13 @@ public class MedicoView extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLimparActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-        Integer apg = Integer.valueOf(JOptionPane.showConfirmDialog(null,"Deseja realmente apagar o registro atual?"));
-        if(apg==0){      
-        int codigo = Integer.parseInt(txtCRM.getText());
-        mdao.excluirMedico(codigo);
-        tbMedico.setModel(new MedicoTabModel(new MedicoDao().listarTodos()));
-        }else{
-        tbMedico.setModel(new MedicoTabModel(new MedicoDao().listarTodos()));
+        Integer apg = Integer.valueOf(JOptionPane.showConfirmDialog(null, "Deseja realmente apagar o registro atual?"));
+        if (apg == 0) {
+            int codigo = Integer.parseInt(txtCRM.getText());
+            mdao.excluirMedico(codigo);
+            tbMedico.setModel(new MedicoTabModel(new MedicoDao().listarTodos()));
+        } else {
+            tbMedico.setModel(new MedicoTabModel(new MedicoDao().listarTodos()));
         }
     }//GEN-LAST:event_btnExcluirActionPerformed
 
@@ -269,18 +269,18 @@ public class MedicoView extends javax.swing.JFrame {
     }//GEN-LAST:event_txtPesquisaActionPerformed
 
     private void btnRelatorioMedicosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRelatorioMedicosActionPerformed
-       Connection conn = (Connection) new Conexao().getConexao();
-       String src = "report1.jasper";
+        Connection conn = (Connection) new Conexao().getConexao();
+        String src = "report1.jasper";
         JasperPrint jasperPrint = null;
-        
-        try{       
-        jasperPrint = JasperFillManager.fillReport(src, null, conn);
-        }catch(Exception ex){
+
+        try {
+            jasperPrint = JasperFillManager.fillReport(src, null, conn);
+        } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex);
         }
-        JasperViewer view  = new JasperViewer(jasperPrint,false);
+        JasperViewer view = new JasperViewer(jasperPrint, false);
         view.setVisible(true);
-              
+
     }//GEN-LAST:event_btnRelatorioMedicosActionPerformed
 
     /**

@@ -3,12 +3,22 @@ package model;
 public class Agenda {
     private int id_agendamento;
     private String paciente_nome;
+    private String docPaciente;
     private String data_agendamento;
     private String horario;
     private String profissional;
     private String especialidade;
     private String status;
 
+    public String getDocPaciente() {
+        return docPaciente;
+    }
+
+    public void setDocPaciente(String docPaciente) {
+        this.docPaciente = docPaciente;
+    }
+
+    
     public int getId_agendamento() {
         return id_agendamento;
     }

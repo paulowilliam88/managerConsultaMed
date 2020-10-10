@@ -21,16 +21,17 @@ public class AgendaDao {
        conn = (Connection) new Conexao().getConexao();
     }
     public void agendarConsulta(Agenda agendamento){
-        String sql = "INSERT INTO agenda (id_agendamento, paciente_name, data_agendamento, hora, medico, exame_especialidade, status) "
+        String sql = "INSERT INTO agenda ( paciente_name,doc_paciente, data_agendamento, hora, medico, exame_especialidade, status) "
                 + "VALUES (?,?,?,?,?,?,?)";
                 try{
                    stmt = (PreparedStatement) conn.prepareStatement(sql);
-                   stmt.setInt(1,agendamento.getId_agendamento());
-                   stmt.setString(2,agendamento.getPaciente_nome());
-                   stmt.setString(3,agendamento.getEspecialidade());
-                   stmt.setString(4,agendamento.getProfissional());
-                   stmt.setString(5,agendamento.getData_agendamento());
-                   stmt.setString(6,agendamento.getHorario());
+                  // stmt.setInt(1,agendamento.getId_agendamento());
+                   stmt.setString(1,agendamento.getPaciente_nome());
+                   stmt.setString(2,agendamento.getDocPaciente());
+                   stmt.setString(3,agendamento.getData_agendamento());
+                   stmt.setString(4,agendamento.getHorario());
+                   stmt.setString(5,agendamento.getProfissional());
+                   stmt.setString(6,agendamento.getEspecialidade());
                    stmt.setString(7,agendamento.getStatus());
                    stmt.execute();
                    stmt.close();
@@ -41,7 +42,7 @@ public class AgendaDao {
                 
     }
     public void alterarStatus(Agenda agendamento){
-       String sql = "UPDATE agenda SET status = ?, WHERE id_agendamento=?";
+       String sql = "UPDATE agenda SET status = ? WHERE id_agendamento=?";
         // String sql = "UPDATE agenda SET paciente_name=?, data_agendamento=?, hora=?, medico=?, exame_especialidade=?, status=? WHERE id_agendamento=?";
         try{
             stmt = (PreparedStatement) conn.prepareStatement(sql);
@@ -54,22 +55,37 @@ public class AgendaDao {
         }
     }
     public void alterarAgendamento(Agenda agendamento){
-       String sql = "UPDATE agenda SET paciente_name=?, data_agendamento=?, hora=?, medico=?, exame_especialidade=?, status=? WHERE id_agendamento=?";
+       String sql = "UPDATE agenda SET paciente_name=?,doc_paciente =?, data_agendamento=?, hora=?, medico=?, exame_especialidade=?, status=? WHERE id_agendamento=?";
         try{
                    stmt = (PreparedStatement) conn.prepareStatement(sql);
                    stmt.setString(1,agendamento.getPaciente_nome());
-                   stmt.setString(2,agendamento.getEspecialidade());
-                   stmt.setString(3,agendamento.getProfissional());
-                   stmt.setString(4,agendamento.getData_agendamento());
-                   stmt.setString(5,agendamento.getHorario());
-                   stmt.setString(6,agendamento.getStatus());
-                   stmt.setInt(7,agendamento.getId_agendamento());
+                   stmt.setString(2,agendamento.getDocPaciente());
+                   stmt.setString(3,agendamento.getData_agendamento());
+                   stmt.setString(4,agendamento.getHorario());
+                   stmt.setString(5,agendamento.getProfissional());
+                   stmt.setString(6,agendamento.getEspecialidade());
+                   stmt.setString(7,agendamento.getStatus());
+                   stmt.setInt(8,agendamento.getId_agendamento());
                    stmt.execute();
                    stmt.close();
         }catch(SQLException e){
             throw new RuntimeException(""+e);
         }
     }
+    
+   /* public void alterarStatusAgenda (Agenda agendamento){
+       String sql = "UPDATE agenda SET status=? WHERE id_agendamento=?";
+        try{
+                   stmt = (PreparedStatement) conn.prepareStatement(sql);
+                   
+                   stmt.setString(1,agendamento.getStatus());
+                   stmt.setInt(2,agendamento.getId_agendamento());
+                   stmt.execute();
+                   stmt.close();
+        }catch(SQLException e){
+            throw new RuntimeException(""+e);
+        }
+    }*/
        public ArrayList<Agenda>listarAgendamento(){
            String sql = "SELECT * FROM agenda";
            try{
@@ -79,6 +95,7 @@ public class AgendaDao {
                    Agenda agendamento = new Agenda();
                    agendamento.setId_agendamento(rs.getInt("id_agendamento"));
                    agendamento.setPaciente_nome(rs.getString("paciente_name"));
+                   agendamento.setDocPaciente(rs.getString("doc_paciente"));
                    agendamento.setEspecialidade(rs.getString("exame_especialidade"));
                    agendamento.setProfissional(rs.getString("medico"));
                    agendamento.setData_agendamento(rs.getString("data_agendamento"));
@@ -100,6 +117,7 @@ public class AgendaDao {
                    Agenda agendamento = new Agenda();
                    agendamento.setId_agendamento(rs.getInt("id_agendamento"));
                    agendamento.setPaciente_nome(rs.getString("paciente_name"));
+                   agendamento.setDocPaciente(rs.getString("doc_paciente"));
                    agendamento.setEspecialidade(rs.getString("exame_especialidade"));
                    agendamento.setProfissional(rs.getString("medico"));
                    agendamento.setData_agendamento(rs.getString("data_agendamento"));
