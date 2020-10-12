@@ -17,8 +17,9 @@ import javax.swing.JOptionPane;
  */
 public class TelaLogin extends javax.swing.JFrame {
     //Conexao conn = new Conexao();
-    
+
     public TelaLogin() {
+
         initComponents();
         //conn.conexao();
     }
@@ -37,6 +38,7 @@ public class TelaLogin extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         campoSenha = new javax.swing.JPasswordField();
         txtUsuario = new javax.swing.JTextField();
+        txtNivelAcesso = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
@@ -77,8 +79,15 @@ public class TelaLogin extends javax.swing.JFrame {
         campoSenha.setBounds(190, 140, 180, 30);
 
         txtUsuario.setName("txtUsuario"); // NOI18N
+        txtUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtUsuarioActionPerformed(evt);
+            }
+        });
         getContentPane().add(txtUsuario);
         txtUsuario.setBounds(190, 100, 180, 30);
+        getContentPane().add(txtNivelAcesso);
+        txtNivelAcesso.setBounds(380, 100, 70, 24);
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/logo tela_login.png"))); // NOI18N
         getContentPane().add(jLabel3);
@@ -93,23 +102,31 @@ public class TelaLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
-       System.exit(0);
+        System.exit(0);
     }//GEN-LAST:event_btnSairActionPerformed
 
     private void btnAcessarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcessarActionPerformed
-      MedicoDao mdao = new MedicoDao();
-      FuncionarioDao func = new FuncionarioDao();
-      if(func.checkLogin(txtUsuario.getText(), campoSenha.getText())){
-           TelaPrincipal tela = new TelaPrincipal();
-                tela.setVisible(true);
-      }else if(mdao.checkLoginMedico(txtUsuario.getText(),campoSenha.getText())){
-        TelaPrincipal tela = new TelaPrincipal();
-                tela.setVisible(true);
-      }else{
-          JOptionPane.showMessageDialog(null,"Nome de usuário ou senha incorreto!");
-      }
-                
+        String nivelAcesso = txtNivelAcesso.getText();
+        MedicoDao mdao = new MedicoDao();
+        FuncionarioDao func = new FuncionarioDao();
+        
+
+        if (func.checkLogin(txtUsuario.getText(), campoSenha.getText())) {
+            TelaPrincipal tela = new TelaPrincipal(txtUsuario.getText());
+            tela.setVisible(true);
+        } else if (mdao.checkLoginMedico(txtUsuario.getText(), campoSenha.getText())) {
+            TelaPrincipal tela = new TelaPrincipal(txtUsuario.getText());
+            tela.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(null, "Nome de usuário ou senha incorreto!");
+        }
+        
+
     }//GEN-LAST:event_btnAcessarActionPerformed
+
+    private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtUsuarioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -143,7 +160,7 @@ public class TelaLogin extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new TelaLogin().setVisible(true);
-               // dispose();
+                // dispose();
             }
         });
     }
@@ -155,6 +172,7 @@ public class TelaLogin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JTextField txtNivelAcesso;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 }

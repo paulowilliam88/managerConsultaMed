@@ -48,6 +48,8 @@ public class MedicoView extends javax.swing.JFrame {
         btnAtualizar = new javax.swing.JButton();
         cbEspecialidade = new javax.swing.JComboBox<>();
         btnRelatorioMedicos = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -64,12 +66,25 @@ public class MedicoView extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Medicos");
+        getContentPane().setLayout(null);
 
-        jLabel1.setText("CRM");
+        jLabel1.setText("CRM:");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(400, 60, 40, 16);
 
-        jLabel2.setText("Médico");
+        jLabel2.setText("Médico:");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(25, 58, 44, 16);
 
-        jLabel3.setText("Especialidade");
+        jLabel3.setText("Especialidade:");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(25, 109, 82, 16);
+        getContentPane().add(txtCRM);
+        txtCRM.setBounds(450, 60, 90, 24);
+        getContentPane().add(txtNomeMedico);
+        txtNomeMedico.setBounds(70, 60, 280, 24);
+        getContentPane().add(txtEspecialidade);
+        txtEspecialidade.setBounds(122, 105, 92, 24);
 
         btnSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/salvar.png"))); // NOI18N
         btnSalvar.setToolTipText("Salvar Médico");
@@ -79,6 +94,8 @@ public class MedicoView extends javax.swing.JFrame {
                 btnSalvarActionPerformed(evt);
             }
         });
+        getContentPane().add(btnSalvar);
+        btnSalvar.setBounds(366, 105, 37, 28);
 
         btnLimpar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/limpar.png"))); // NOI18N
         btnLimpar.setToolTipText("Limpar Campos.");
@@ -88,6 +105,8 @@ public class MedicoView extends javax.swing.JFrame {
                 btnLimparActionPerformed(evt);
             }
         });
+        getContentPane().add(btnLimpar);
+        btnLimpar.setBounds(409, 105, 37, 28);
 
         btnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/apagar.png"))); // NOI18N
         btnExcluir.setToolTipText("Excluir Registro");
@@ -97,6 +116,8 @@ public class MedicoView extends javax.swing.JFrame {
                 btnExcluirActionPerformed(evt);
             }
         });
+        getContentPane().add(btnExcluir);
+        btnExcluir.setBounds(495, 105, 37, 28);
 
         tbMedico.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -113,13 +134,20 @@ public class MedicoView extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(tbMedico);
 
+        getContentPane().add(jScrollPane2);
+        jScrollPane2.setBounds(25, 139, 508, 112);
+
         txtPesquisa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtPesquisaActionPerformed(evt);
             }
         });
+        getContentPane().add(txtPesquisa);
+        txtPesquisa.setBounds(212, 341, 321, 24);
 
-        jLabel4.setText("Pesquisar por nome");
+        jLabel4.setText("Pesquisar por nome:");
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(76, 345, 118, 16);
 
         btnAtualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/editar.png"))); // NOI18N
         btnAtualizar.setToolTipText("Atualizar Registro");
@@ -129,9 +157,13 @@ public class MedicoView extends javax.swing.JFrame {
                 btnAtualizarActionPerformed(evt);
             }
         });
+        getContentPane().add(btnAtualizar);
+        btnAtualizar.setBounds(452, 105, 37, 28);
 
         cbEspecialidade.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Clinico Geral", "Ortopedista", "Ginecologista", "Urologista", "Ofitalmologista" }));
         cbEspecialidade.setPreferredSize(new java.awt.Dimension(95, 28));
+        getContentPane().add(cbEspecialidade);
+        cbEspecialidade.setBounds(226, 105, 95, 20);
 
         btnRelatorioMedicos.setText("Imprimir");
         btnRelatorioMedicos.addActionListener(new java.awt.event.ActionListener() {
@@ -139,82 +171,20 @@ public class MedicoView extends javax.swing.JFrame {
                 btnRelatorioMedicosActionPerformed(evt);
             }
         });
+        getContentPane().add(btnRelatorioMedicos);
+        btnRelatorioMedicos.setBounds(443, 282, 90, 32);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(76, 76, 76)
-                        .addComponent(jLabel4)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel2))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(txtNomeMedico, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 410, Short.MAX_VALUE)
-                                    .addComponent(txtCRM)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addComponent(txtEspecialidade, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(cbEspecialidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(btnLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(btnAtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 508, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(26, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btnRelatorioMedicos)
-                .addGap(97, 97, 97))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(txtCRM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(24, 24, 24)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txtNomeMedico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cbEspecialidade, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel3)
-                        .addComponent(txtEspecialidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
-                .addComponent(btnRelatorioMedicos)
-                .addGap(29, 29, 29)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addContainerGap(22, Short.MAX_VALUE))
-        );
+        jLabel5.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        jLabel5.setText("Cadastro de Médicos");
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(214, 6, 152, 19);
 
-        setBounds(0, 0, 580, 426);
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/fundomedio.jpg"))); // NOI18N
+        getContentPane().add(jLabel6);
+        jLabel6.setBounds(0, 0, 560, 390);
+
+        setSize(new java.awt.Dimension(580, 426));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
@@ -329,6 +299,8 @@ public class MedicoView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;

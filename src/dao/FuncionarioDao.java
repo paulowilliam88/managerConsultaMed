@@ -128,6 +128,7 @@ public class FuncionarioDao {
                 stmt.setString(1, login);
                 stmt.setString(2, senha);
                 rs = stmt.executeQuery();
+                
                 if(rs.next()){
                     check = true;
                                       

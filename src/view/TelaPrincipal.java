@@ -1,8 +1,7 @@
 package view;
 
 import dao.ConsultaDao;
-import javax.swing.event.InternalFrameAdapter;
-
+import java.lang.String;
 /**
  *
  * @author Paulo
@@ -11,16 +10,22 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     ConsultaDao consuDao = new ConsultaDao();
 
-    public TelaPrincipal() {
-
+    public TelaPrincipal(String usuario) {
         initComponents();
+        labelUsuario.setText(usuario);
 
+    }
+
+    private TelaPrincipal() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel4 = new javax.swing.JLabel();
+        labelUsuario = new javax.swing.JLabel();
         internalFrameBemVindo = new javax.swing.JInternalFrame();
         frameInterno = new javax.swing.JPanel();
         btnCadMedicos = new javax.swing.JButton();
@@ -31,7 +36,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         btnFecharBemVindo = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
+        labelFundo = new javax.swing.JLabel();
         barraFrameTelaPrincipal = new javax.swing.JMenuBar();
         menuCadastro = new javax.swing.JMenu();
         cadMedico = new javax.swing.JMenuItem();
@@ -47,6 +52,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
+
+        jLabel4.setText("Usuário:");
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(0, 370, 47, 20);
+        getContentPane().add(labelUsuario);
+        labelUsuario.setBounds(40, 370, 110, 20);
 
         internalFrameBemVindo.setTitle("Bem Vindo!");
         internalFrameBemVindo.setVisible(true);
@@ -137,10 +148,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
         getContentPane().add(internalFrameBemVindo);
         internalFrameBemVindo.setBounds(30, 80, 500, 260);
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/0798adf9c191e928d86114726aaee261.jpg"))); // NOI18N
-        jLabel3.setText("jLabel3");
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(0, -20, 560, 420);
+        labelFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/0798adf9c191e928d86114726aaee261.jpg"))); // NOI18N
+        labelFundo.setText("jLabel3");
+        getContentPane().add(labelFundo);
+        labelFundo.setBounds(0, -20, 560, 420);
 
         menuCadastro.setText("Cadastro");
 
@@ -317,9 +328,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JLabel labelFundo;
+    private javax.swing.JLabel labelUsuario;
     private javax.swing.JMenu mSair;
     private javax.swing.JMenu menuCadastro;
     private javax.swing.JMenu menuFerramentas;
