@@ -2,6 +2,10 @@ package view;
 
 import dao.ConsultaDao;
 import java.lang.String;
+import dao.Conexao;
+import dao.FuncionarioDao;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Paulo
@@ -10,9 +14,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     ConsultaDao consuDao = new ConsultaDao();
 
-    public TelaPrincipal(String usuario) {
+    FuncionarioDao fnDao = new FuncionarioDao();
+
+    public TelaPrincipal(String usuario, String perfil) {
         initComponents();
         labelUsuario.setText(usuario);
+
+        lblPerfilUsuario.setText(perfil);
 
     }
 
@@ -24,8 +32,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel4 = new javax.swing.JLabel();
+        lblPerfilUsuario = new javax.swing.JLabel();
         labelUsuario = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         internalFrameBemVindo = new javax.swing.JInternalFrame();
         frameInterno = new javax.swing.JPanel();
         btnCadMedicos = new javax.swing.JButton();
@@ -33,10 +43,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         btnCadPacientes = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         btnAgenda = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btnConsulta = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         btnFecharBemVindo = new javax.swing.JButton();
         labelFundo = new javax.swing.JLabel();
+        lblAcesso = new javax.swing.JLabel();
         barraFrameTelaPrincipal = new javax.swing.JMenuBar();
         menuCadastro = new javax.swing.JMenu();
         cadMedico = new javax.swing.JMenuItem();
@@ -53,11 +64,23 @@ public class TelaPrincipal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
-        jLabel4.setText("Usuário:");
-        getContentPane().add(jLabel4);
-        jLabel4.setBounds(0, 370, 47, 20);
+        lblPerfilUsuario.setForeground(new java.awt.Color(0, 0, 0));
+        getContentPane().add(lblPerfilUsuario);
+        lblPerfilUsuario.setBounds(220, 370, 90, 20);
+
+        labelUsuario.setForeground(new java.awt.Color(0, 0, 0));
         getContentPane().add(labelUsuario);
-        labelUsuario.setBounds(40, 370, 110, 20);
+        labelUsuario.setBounds(60, 370, 110, 20);
+
+        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel5.setText("Usuário:");
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(10, 370, 47, 20);
+
+        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel6.setText("Perfil:");
+        getContentPane().add(jLabel6);
+        jLabel6.setBounds(180, 370, 33, 20);
 
         internalFrameBemVindo.setTitle("Bem Vindo!");
         internalFrameBemVindo.setVisible(true);
@@ -117,15 +140,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
         frameInterno.add(btnAgenda);
         btnAgenda.setBounds(20, 100, 80, 60);
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/consulta.png"))); // NOI18N
-        jButton1.setToolTipText("Abrir Consulta");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnConsulta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/consulta.png"))); // NOI18N
+        btnConsulta.setToolTipText("Abrir Consulta");
+        btnConsulta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnConsultaActionPerformed(evt);
             }
         });
-        frameInterno.add(jButton1);
-        jButton1.setBounds(370, 0, 90, 60);
+        frameInterno.add(btnConsulta);
+        btnConsulta.setBounds(370, 0, 90, 60);
 
         internalFrameBemVindo.getContentPane().add(frameInterno);
         frameInterno.setBounds(0, 60, 500, 180);
@@ -152,6 +175,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
         labelFundo.setText("jLabel3");
         getContentPane().add(labelFundo);
         labelFundo.setBounds(0, -20, 560, 420);
+
+        lblAcesso.setText("jLabel3");
+        getContentPane().add(lblAcesso);
+        lblAcesso.setBounds(350, 360, 41, 16);
 
         menuCadastro.setText("Cadastro");
 
@@ -234,25 +261,51 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_menuItemSairActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        TelaPrincipal tela = new TelaPrincipal();
-        tela.setVisible(true);
-        dispose();
+        internalFrameBemVindo.setVisible(true);
+        //TelaPrincipal telap = new TelaPrincipal();
+        //telap.setVisible(true);
+        //dispose();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void cadMedicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadMedicoActionPerformed
-        MedicoView mv = new MedicoView();
-        mv.setVisible(true);
+        String acesso = labelUsuario.getText();
+        String perfil = lblPerfilUsuario.getText();
+
+        if (lblPerfilUsuario.getText() != ("Administrador")) {
+            JOptionPane.showMessageDialog(null, "Acesso Negado");
+        } else {
+            MedicoView mv = new MedicoView();
+            mv.setVisible(true);
+        }
 
     }//GEN-LAST:event_cadMedicoActionPerformed
 
     private void btnCadMedicosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadMedicosActionPerformed
-        MedicoView mv = new MedicoView();
-        mv.setVisible(true);
+        String acesso = labelUsuario.getText();
+        String perfil = lblPerfilUsuario.getText();
+
+        if (lblPerfilUsuario.getText() != ("Administrador")) {
+            JOptionPane.showMessageDialog(null, "Acesso Negado");
+        } else {
+            MedicoView mv = new MedicoView();
+            mv.setVisible(true);
+        }
+
+
     }//GEN-LAST:event_btnCadMedicosActionPerformed
 
     private void btnCadEnfermeirosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadEnfermeirosActionPerformed
-        FuncionarioView fTela = new FuncionarioView();
-        fTela.setVisible(true);
+        String acesso = labelUsuario.getText();
+        String perfil = lblPerfilUsuario.getText();
+
+        if (lblPerfilUsuario.getText() != ("Administrador")) {
+            JOptionPane.showMessageDialog(null, "Acesso Negado");
+        } else {
+            FuncionarioView fTela = new FuncionarioView();
+            fTela.setVisible(true);
+        }
+
+
     }//GEN-LAST:event_btnCadEnfermeirosActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
@@ -270,11 +323,20 @@ public class TelaPrincipal extends javax.swing.JFrame {
         agView.setVisible(true);
     }//GEN-LAST:event_btnAgendaActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        ConsultaView tela = new ConsultaView();
-        tela.setVisible(true);
-        consuDao.gerarAtendimento();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btnConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultaActionPerformed
+        String acesso = labelUsuario.getText();
+        String perfil = lblPerfilUsuario.getText();
+
+        if (lblPerfilUsuario.getText() != ("Administrador")&&lblPerfilUsuario.getText()!=("Médico")) {
+            JOptionPane.showMessageDialog(null, "Acesso Negado");
+        } else {
+            ConsultaView tela = new ConsultaView();
+            tela.setVisible(true);
+            consuDao.gerarAtendimento();
+        }
+
+
+    }//GEN-LAST:event_btnConsultaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -318,6 +380,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnCadEnfermeiros;
     public javax.swing.JButton btnCadMedicos;
     private javax.swing.JButton btnCadPacientes;
+    private javax.swing.JButton btnConsulta;
     private javax.swing.JButton btnFecharBemVindo;
     private javax.swing.JMenuItem cadEnfermeiro;
     private javax.swing.JMenuItem cadMedico;
@@ -325,14 +388,16 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu cadUsuario;
     private javax.swing.JPanel frameInterno;
     public javax.swing.JInternalFrame internalFrameBemVindo;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JLabel labelFundo;
     private javax.swing.JLabel labelUsuario;
+    private javax.swing.JLabel lblAcesso;
+    private javax.swing.JLabel lblPerfilUsuario;
     private javax.swing.JMenu mSair;
     private javax.swing.JMenu menuCadastro;
     private javax.swing.JMenu menuFerramentas;
