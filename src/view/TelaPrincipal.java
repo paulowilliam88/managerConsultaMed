@@ -1,10 +1,14 @@
 package view;
 
+import com.mysql.jdbc.Connection;
 import dao.ConsultaDao;
 import java.lang.String;
 import dao.Conexao;
 import dao.FuncionarioDao;
 import javax.swing.JOptionPane;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -55,13 +59,18 @@ public class TelaPrincipal extends javax.swing.JFrame {
         cadPaciente = new javax.swing.JMenuItem();
         cadUsuario = new javax.swing.JMenu();
         menuRelatorio = new javax.swing.JMenu();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
+        jMenuItem6 = new javax.swing.JMenuItem();
         menuFerramentas = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         mSair = new javax.swing.JMenu();
         menuItemSair = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
         getContentPane().setLayout(null);
 
         lblPerfilUsuario.setForeground(new java.awt.Color(0, 0, 0));
@@ -174,7 +183,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         labelFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/0798adf9c191e928d86114726aaee261.jpg"))); // NOI18N
         labelFundo.setText("jLabel3");
         getContentPane().add(labelFundo);
-        labelFundo.setBounds(0, -20, 560, 420);
+        labelFundo.setBounds(0, 0, 560, 400);
 
         lblAcesso.setText("jLabel3");
         getContentPane().add(lblAcesso);
@@ -207,6 +216,34 @@ public class TelaPrincipal extends javax.swing.JFrame {
         barraFrameTelaPrincipal.add(menuCadastro);
 
         menuRelatorio.setText("Relatórios");
+
+        jMenuItem3.setText("Médicos");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        menuRelatorio.add(jMenuItem3);
+
+        jMenuItem4.setText("Funcionário");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        menuRelatorio.add(jMenuItem4);
+
+        jMenuItem5.setText("Paciente");
+        menuRelatorio.add(jMenuItem5);
+
+        jMenuItem6.setText("Agendamentos");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
+        menuRelatorio.add(jMenuItem6);
+
         barraFrameTelaPrincipal.add(menuRelatorio);
 
         menuFerramentas.setText("Ferramentas");
@@ -268,8 +305,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void cadMedicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadMedicoActionPerformed
-        String acesso = labelUsuario.getText();
-        String perfil = lblPerfilUsuario.getText();
 
         if (lblPerfilUsuario.getText() != ("Administrador")) {
             JOptionPane.showMessageDialog(null, "Acesso Negado");
@@ -281,8 +316,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_cadMedicoActionPerformed
 
     private void btnCadMedicosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadMedicosActionPerformed
-        String acesso = labelUsuario.getText();
-        String perfil = lblPerfilUsuario.getText();
 
         if (lblPerfilUsuario.getText() != ("Administrador")) {
             JOptionPane.showMessageDialog(null, "Acesso Negado");
@@ -295,8 +328,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCadMedicosActionPerformed
 
     private void btnCadEnfermeirosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadEnfermeirosActionPerformed
-        String acesso = labelUsuario.getText();
-        String perfil = lblPerfilUsuario.getText();
 
         if (lblPerfilUsuario.getText() != ("Administrador")) {
             JOptionPane.showMessageDialog(null, "Acesso Negado");
@@ -324,10 +355,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAgendaActionPerformed
 
     private void btnConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultaActionPerformed
-        String acesso = labelUsuario.getText();
-        String perfil = lblPerfilUsuario.getText();
 
-        if (lblPerfilUsuario.getText() != ("Administrador")&&lblPerfilUsuario.getText()!=("Médico")) {
+        if (lblPerfilUsuario.getText() != ("Administrador") && lblPerfilUsuario.getText() != ("Médico")) {
             JOptionPane.showMessageDialog(null, "Acesso Negado");
         } else {
             ConsultaView tela = new ConsultaView();
@@ -337,6 +366,58 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_btnConsultaActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        if (lblPerfilUsuario.getText() != ("Administrador") && lblPerfilUsuario.getText() != ("Médico")) {
+            JOptionPane.showMessageDialog(null, "Acesso Negado");
+        } else {
+
+            Connection conn = (Connection) new Conexao().getConexao();
+            String src = "agenda.jasper";
+            JasperPrint jasperPrint = null;
+
+            try {
+                jasperPrint = JasperFillManager.fillReport(src, null, conn);
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, ex);
+            }
+            JasperViewer view = new JasperViewer(jasperPrint, false);
+            view.setVisible(true);
+        }
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        if (lblPerfilUsuario.getText() != ("Administrador") && lblPerfilUsuario.getText() != ("Médico")) {
+            JOptionPane.showMessageDialog(null, "Acesso Negado");
+        } else {
+                Connection conn = (Connection) new Conexao().getConexao();
+        String src = "funcionario.jasper";
+        JasperPrint jasperPrint = null;
+
+        try {
+            jasperPrint = JasperFillManager.fillReport(src, null, conn);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+        JasperViewer view = new JasperViewer(jasperPrint, false);
+        view.setVisible(true);
+                            
+        }
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        Connection conn = (Connection) new Conexao().getConexao();
+        String src = "agenda.jasper";
+        JasperPrint jasperPrint = null;
+
+        try {
+            jasperPrint = JasperFillManager.fillReport(src, null, conn);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+        JasperViewer view = new JasperViewer(jasperPrint, false);
+        view.setVisible(true);
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -394,6 +475,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JLabel labelFundo;
     private javax.swing.JLabel labelUsuario;
     private javax.swing.JLabel lblAcesso;

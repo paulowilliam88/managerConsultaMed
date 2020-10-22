@@ -39,10 +39,10 @@ public class FuncionarioDao {
         try {
             stmt = (PreparedStatement) conn.prepareStatement(Sql);
             stmt.setInt(1, funcionario.getIdFuncionario());
-            stmt.setString(2, funcionario.getAcesso());
-            stmt.setString(3, funcionario.getNomeFuncionario());
-            stmt.setString(4, funcionario.getCargo());
-            stmt.setString(5, funcionario.getSenha());
+            stmt.setString(2, funcionario.getNomeFuncionario());
+            stmt.setString(3, funcionario.getCargo());
+            stmt.setString(4, funcionario.getSenha());
+            stmt.setString(5, funcionario.getAcesso());
             stmt.execute();
             stmt.close();
 
@@ -132,9 +132,9 @@ public class FuncionarioDao {
                 Funcionario funcionario = new Funcionario();
                 funcionario.setIdFuncionario(rs.getInt("id"));
                 funcionario.setNomeFuncionario(rs.getString("nome_funcionario"));
-                //funcionario.setCargo(rs.getString("cargo"));
+                
                 funcionario.setAcesso(rs.getString("acesso"));
-                //funcionario.setSenha(rs.getString("senha"));
+                
                 lista.add(funcionario);
                 if (rs.getString("acesso").equals("adm")) {
                     String op = "Acesso";

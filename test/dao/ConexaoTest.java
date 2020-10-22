@@ -6,35 +6,26 @@
 package dao;
 
 import junit.framework.TestCase;
+import org.junit.Test;
 
 /**
  *
  * @author Paulo
  */
 public class ConexaoTest extends TestCase {
-    Conexao conn;
+    
     public ConexaoTest(String testName) {
         super(testName);
     }
-    
-    @Override
-    protected void setUp() throws Exception {
-        conn = new Conexao();
-    }
-    
-    @Override
-    protected void tearDown() throws Exception {
-        super.tearDown();
-    }
 
-    /**
-     * Test of getConexao method, of class Conexao.
-     */
-    public void testGetConexao() {
-        
-      assertEquals(conn, null);
-        
-        
-    }
     
+    @Test
+    public void conectaTest(){
+        Conexao conn = new Conexao();
+        conn.getConexao();
+      
+        //assertNull(conn);
+    }
+            
+            
 }

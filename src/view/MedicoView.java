@@ -66,6 +66,7 @@ public class MedicoView extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Medicos");
+        setResizable(false);
         getContentPane().setLayout(null);
 
         jLabel1.setText("CRM:");
@@ -235,7 +236,7 @@ public class MedicoView extends javax.swing.JFrame {
 
     private void txtPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPesquisaActionPerformed
         String pesquisa = txtPesquisa.getText();
-        tbMedico.setModel(new MedicoTabModel(new MedicoDao().bucarMedico(pesquisa)));
+        tbMedico.setModel(new MedicoTabModel(new MedicoDao().buscarMedico(pesquisa)));
     }//GEN-LAST:event_txtPesquisaActionPerformed
 
     private void btnRelatorioMedicosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRelatorioMedicosActionPerformed

@@ -83,7 +83,7 @@ public class MedicoDao {
         return lista;
     }
 
-    public ArrayList<Medico> bucarMedico(String nome) {
+    public ArrayList<Medico> buscarMedico(String nome) {
         String sql = "SELECT *FROM medicos WHERE nome_medico LIKE '%" + nome + "%'";
         try {
             st = conn.createStatement();

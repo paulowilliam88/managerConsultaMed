@@ -33,6 +33,7 @@ public class PesquisaPacienteView extends javax.swing.JFrame {
         Tabela_Paciente = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         Tabela_Paciente.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

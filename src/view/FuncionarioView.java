@@ -57,6 +57,7 @@ public class FuncionarioView extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 formWindowClosed(evt);
@@ -70,22 +71,27 @@ public class FuncionarioView extends javax.swing.JFrame {
         });
         getContentPane().setLayout(null);
 
+        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("ID:");
         getContentPane().add(jLabel1);
         jLabel1.setBounds(30, 60, 14, 16);
 
+        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Nome:");
         getContentPane().add(jLabel2);
         jLabel2.setBounds(30, 90, 36, 16);
 
+        jLabel3.setBackground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Cargo:");
         getContentPane().add(jLabel3);
         jLabel3.setBounds(340, 90, 37, 16);
 
+        jLabel4.setBackground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Acesso:");
         getContentPane().add(jLabel4);
         jLabel4.setBounds(20, 120, 46, 16);
 
+        jLabel5.setBackground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Senha:");
         getContentPane().add(jLabel5);
         jLabel5.setBounds(340, 130, 39, 16);
@@ -170,6 +176,7 @@ public class FuncionarioView extends javax.swing.JFrame {
         getContentPane().add(btnApagarFuncionario);
         btnApagarFuncionario.setBounds(450, 170, 50, 40);
 
+        jLabel6.setBackground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("PESQUISAR:");
         getContentPane().add(jLabel6);
         jLabel6.setBounds(117, 347, 70, 16);
@@ -182,6 +189,7 @@ public class FuncionarioView extends javax.swing.JFrame {
         getContentPane().add(txtPesquisarFuncionario);
         txtPesquisarFuncionario.setBounds(205, 343, 283, 24);
 
+        jLabel8.setBackground(new java.awt.Color(255, 255, 255));
         jLabel8.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jLabel8.setText("Cadastro de Funcionários");
         getContentPane().add(jLabel8);
