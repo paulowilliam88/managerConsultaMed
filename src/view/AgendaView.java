@@ -8,10 +8,9 @@ package view;
 import dao.AgendaDao;
 import dao.MedicoDao;
 import dao.PacienteDao;
-import java.util.Calendar;
+import java.sql.Date;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
-import javax.swing.table.AbstractTableModel;
 import model.Agenda;
 import table.AgendaTabModel;
 import table.MedicoTabModel;
@@ -60,12 +59,9 @@ public class AgendaView extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         btnAgendarConsulta = new javax.swing.JButton();
-        jLabel7 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        cb_Agenda_Status = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         txt_Agenda_Paciente = new javax.swing.JTextField();
         txt_Agenda_Especialidade = new javax.swing.JTextField();
         txt_Agenda_Profissional = new javax.swing.JTextField();
@@ -75,10 +71,9 @@ public class AgendaView extends javax.swing.JFrame {
         txtNumeroAgendamento = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tb_Agendamento = new javax.swing.JTable();
-        cbDia = new javax.swing.JComboBox<>();
-        cbMes = new javax.swing.JComboBox<>();
-        cbAno = new javax.swing.JComboBox<>();
         cbHorario = new javax.swing.JComboBox<>();
+        calendario = new com.toedter.calendar.JDateChooser();
+        jLabel5 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         LFundo = new javax.swing.JLabel();
@@ -138,7 +133,7 @@ public class AgendaView extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txt_Agenda_Pesquisa_paciente);
-        txt_Agenda_Pesquisa_paciente.setBounds(120, 30, 162, 24);
+        txt_Agenda_Pesquisa_paciente.setBounds(130, 30, 162, 24);
 
         frame_Medico.setClosable(true);
         frame_Medico.setTitle("Lista de Médicos");
@@ -186,7 +181,7 @@ public class AgendaView extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txt_Agenda_Pesquisa_Medico);
-        txt_Agenda_Pesquisa_Medico.setBounds(640, 30, 162, 24);
+        txt_Agenda_Pesquisa_Medico.setBounds(630, 30, 162, 24);
 
         jInternalFrame1.setTitle("Agenda Médica");
         jInternalFrame1.setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/agenda.png"))); // NOI18N
@@ -194,7 +189,11 @@ public class AgendaView extends javax.swing.JFrame {
         jInternalFrame1.setVisible(true);
         jInternalFrame1.getContentPane().setLayout(null);
 
+        jPanel1.setLayout(null);
+
         jLabel6.setText("Horário:");
+        jPanel1.add(jLabel6);
+        jLabel6.setBounds(10, 170, 45, 16);
 
         btnAgendarConsulta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/AddAgenda.png"))); // NOI18N
         btnAgendarConsulta.setToolTipText("Confirmar Agendamento");
@@ -203,32 +202,44 @@ public class AgendaView extends javax.swing.JFrame {
                 btnAgendarConsultaActionPerformed(evt);
             }
         });
-
-        jLabel7.setText("Status:");
+        jPanel1.add(btnAgendarConsulta);
+        btnAgendarConsulta.setBounds(220, 130, 53, 56);
 
         jLabel2.setText("Paciente:");
-
-        cb_Agenda_Status.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Agendado", "Atendido", "Cancelado", " " }));
+        jPanel1.add(jLabel2);
+        jLabel2.setBounds(6, 10, 53, 16);
 
         jLabel3.setText("Especialidade:");
+        jPanel1.add(jLabel3);
+        jLabel3.setBounds(10, 100, 82, 16);
 
         jLabel4.setText("Profissional:");
-
-        jLabel5.setText("Data:");
+        jPanel1.add(jLabel4);
+        jLabel4.setBounds(10, 70, 71, 16);
 
         txt_Agenda_Paciente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_Agenda_PacienteActionPerformed(evt);
             }
         });
+        jPanel1.add(txt_Agenda_Paciente);
+        txt_Agenda_Paciente.setBounds(65, 6, 230, 24);
+        jPanel1.add(txt_Agenda_Especialidade);
+        txt_Agenda_Especialidade.setBounds(100, 100, 95, 24);
+        jPanel1.add(txt_Agenda_Profissional);
+        txt_Agenda_Profissional.setBounds(100, 70, 180, 24);
 
         jLabel8.setText("RG:");
+        jPanel1.add(jLabel8);
+        jLabel8.setBounds(6, 35, 30, 16);
 
         txt_Rg_agenda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_Rg_agendaActionPerformed(evt);
             }
         });
+        jPanel1.add(txt_Rg_agenda);
+        txt_Rg_agenda.setBounds(65, 31, 230, 24);
 
         btnCancelarAgendamento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/CancelarAgenda.png"))); // NOI18N
         btnCancelarAgendamento.setToolTipText("Cancelar agendamento selecionado");
@@ -237,6 +248,10 @@ public class AgendaView extends javax.swing.JFrame {
                 btnCancelarAgendamentoActionPerformed(evt);
             }
         });
+        jPanel1.add(btnCancelarAgendamento);
+        btnCancelarAgendamento.setBounds(280, 130, 51, 56);
+        jPanel1.add(txtNumeroAgendamento);
+        txtNumeroAgendamento.setBounds(440, 260, 36, 24);
 
         tb_Agendamento.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -256,139 +271,24 @@ public class AgendaView extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tb_Agendamento);
 
-        cbDia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01/", "02/", "03/", "04/", "05/", "06/", "07/", "08/", "09/", "10/", "11/", "12/", "13/", "14/", "15/", "16/", "17/", "18/", "19/", "20/", "21/", "22/", "23/", "24/", "25/", "26/", "27/", "28/", "29/", "30/", "31/", " ", " ", " " }));
-        cbDia.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                cbDiaItemStateChanged(evt);
-            }
-        });
-        cbDia.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                cbDiaMouseClicked(evt);
-            }
-        });
-
-        cbMes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01/", "02/", "03/", "04/", "05/", "06/", "07/", "08/", "09/", "10/", "11/", "12/" }));
-        cbMes.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                cbMesItemStateChanged(evt);
-            }
-        });
-
-        cbAno.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2020", "2021", "2022", "2023" }));
-        cbAno.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                cbAnoItemStateChanged(evt);
-            }
-        });
+        jPanel1.add(jScrollPane1);
+        jScrollPane1.setBounds(336, 6, 670, 180);
 
         cbHorario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "09:00", "09:30", "10:00", "10:30", "11:00", "11:30", "12:00", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00" }));
+        jPanel1.add(cbHorario);
+        cbHorario.setBounds(60, 170, 90, 26);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel8)
-                                .addGap(40, 40, 40)
-                                .addComponent(txt_Rg_agenda, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txt_Agenda_Paciente)))
-                        .addGap(54, 54, 54)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addGap(18, 18, 18)
-                                .addComponent(txt_Agenda_Profissional, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txt_Agenda_Especialidade, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnAgendarConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnCancelarAgendamento, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(73, 73, 73)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel7)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cb_Agenda_Status, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel5))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(cbDia, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(cbMes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(cbAno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(171, 171, 171)
-                                        .addComponent(txtNumeroAgendamento, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(cbHorario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(24, 24, 24)))
-                .addGap(24, 24, 24)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(txt_Agenda_Paciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(1, 1, 1)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel8)
-                            .addComponent(txt_Rg_agenda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(56, 56, 56)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnAgendarConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addComponent(btnCancelarAgendamento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtNumeroAgendamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(53, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(txt_Agenda_Profissional, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(txt_Agenda_Especialidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(11, 11, 11)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(cbDia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cbMes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cbAno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6)
-                            .addComponent(cbHorario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cb_Agenda_Status, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7))
-                        .addGap(63, 63, 63))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1)
-                        .addContainerGap())))
-        );
+        calendario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                calendarioMouseClicked(evt);
+            }
+        });
+        jPanel1.add(calendario);
+        calendario.setBounds(40, 140, 170, 29);
+
+        jLabel5.setText("Data:");
+        jPanel1.add(jLabel5);
+        jLabel5.setBounds(10, 140, 29, 16);
 
         jInternalFrame1.getContentPane().add(jPanel1);
         jPanel1.setBounds(0, 6, 990, 250);
@@ -398,11 +298,11 @@ public class AgendaView extends javax.swing.JFrame {
 
         jLabel1.setText("Buscar Médico:");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(510, 30, 110, 20);
+        jLabel1.setBounds(500, 30, 110, 20);
 
         jLabel9.setText("Buscar Paiciente:");
         getContentPane().add(jLabel9);
-        jLabel9.setBounds(10, 30, 110, 20);
+        jLabel9.setBounds(20, 30, 110, 20);
 
         LFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/AgendaFundo2.png"))); // NOI18N
         getContentPane().add(LFundo);
@@ -461,20 +361,27 @@ public class AgendaView extends javax.swing.JFrame {
         agenda.setProfissional(txt_Agenda_Profissional.getText());
         agenda.setEspecialidade(txt_Agenda_Especialidade.getText());
         agenda.setHorario(cbHorario.getSelectedItem().toString());
-        agenda.setData_agendamento(cbDia.getSelectedItem().toString()+cbMes.getSelectedItem()+cbAno.getSelectedItem());
+        agenda.setData_agendamento(calendario.getDate());
+        //agenda.setData_agendamento(cbDia.getSelectedItem().toString()+cbMes.getSelectedItem()+cbAno.getSelectedItem());
         //agenda.setHorario(txt_Agenda_Horario.getText());
-        agenda.setStatus((String) cb_Agenda_Status.getSelectedItem());
+        agenda.setStatus("Agendado");
         /*if(txt_Agenda_Data.getText()==null||txt_Agenda_Data.getText().trim().equals("")){
             JOptionPane.showMessageDialog(null,"ERRO:");
         }*/
-        if (agDao.verificarAgenda(txt_Agenda_Profissional.getText(), (cbDia.getSelectedItem().toString()+cbMes.getSelectedItem()+
-                cbAno.getSelectedItem()), cbHorario.getSelectedItem().toString())) {
-            JOptionPane.showMessageDialog(null, "Já existe Agendamento para esta data e horário!");
-           
-        } else {
+
+        //Date data = (Date) calendario.getDate();
+
             agDao.agendarConsulta(agenda);
             tb_Agendamento.setModel(new AgendaTabModel(new AgendaDao().listarAgendamento()));
-        }
+        
+////                //.getSelectedItem().toString()+cbMes.getSelectedItem()+
+//                //cbAno.getSelectedItem()), cbHorario.getSelectedItem().toString())) {
+//            JOptionPane.showMessageDialog(null, "Já existe Agendamento para esta data e horário!");
+//           
+//        } else {
+//            agDao.agendarConsulta(agenda);
+//            tb_Agendamento.setModel(new AgendaTabModel(new AgendaDao().listarAgendamento()));
+        //}
 
 
     }//GEN-LAST:event_btnAgendarConsultaActionPerformed
@@ -483,23 +390,9 @@ public class AgendaView extends javax.swing.JFrame {
         txtNumeroAgendamento.setText(tb_Agendamento.getValueAt(tb_Agendamento.getSelectedRow(), AgendaTabModel.COL_ID_AGENDAMENTO).toString());
     }//GEN-LAST:event_tb_AgendamentoMouseClicked
 
-    private void cbDiaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbDiaMouseClicked
-    
-    }//GEN-LAST:event_cbDiaMouseClicked
-
-    private void cbMesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbMesItemStateChanged
-    //txt_Agenda_Data.setText(cbDia.getSelectedItem().toString()+cbMes.getSelectedItem().toString()+cbAno.getSelectedItem().toString());
-    }//GEN-LAST:event_cbMesItemStateChanged
-
-    private void cbDiaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbDiaItemStateChanged
-    //txt_Agenda_Data.setText(cbDia.getSelectedItem().toString()+cbMes.getSelectedItem().toString()+cbAno.getSelectedItem().toString());
-
-    }//GEN-LAST:event_cbDiaItemStateChanged
-
-    private void cbAnoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbAnoItemStateChanged
-    //txt_Agenda_Data.setText(cbDia.getSelectedItem().toString()+cbMes.getSelectedItem().toString()+cbAno.getSelectedItem().toString());
-
-    }//GEN-LAST:event_cbAnoItemStateChanged
+    private void calendarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_calendarioMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_calendarioMouseClicked
 
     /**
      * @param args the command line arguments
@@ -542,11 +435,8 @@ public class AgendaView extends javax.swing.JFrame {
     private javax.swing.JTable Tabela_Paciente;
     private javax.swing.JButton btnAgendarConsulta;
     private javax.swing.JButton btnCancelarAgendamento;
-    private javax.swing.JComboBox<String> cbAno;
-    private javax.swing.JComboBox<String> cbDia;
+    private com.toedter.calendar.JDateChooser calendario;
     private javax.swing.JComboBox<String> cbHorario;
-    private javax.swing.JComboBox<String> cbMes;
-    private javax.swing.JComboBox<String> cb_Agenda_Status;
     private javax.swing.JInternalFrame frame_Medico;
     private javax.swing.JInternalFrame frame_tabelas;
     private javax.swing.JInternalFrame jInternalFrame1;
@@ -556,7 +446,6 @@ public class AgendaView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;

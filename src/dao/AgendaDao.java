@@ -7,7 +7,9 @@ import com.mysql.jdbc.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.sql.Date;
 import model.Agenda;
+
 
 public class AgendaDao {
 
@@ -29,7 +31,8 @@ public class AgendaDao {
             // stmt.setInt(1,agendamento.getId_agendamento());
             stmt.setString(1, agendamento.getPaciente_nome());
             stmt.setString(2, agendamento.getDocPaciente());
-            stmt.setString(3, agendamento.getData_agendamento());
+            stmt.setDate(3, new java.sql.Date(agendamento.getData_agendamento().getTime()));
+//          stmt.setString(3, agendamento.getData_agendamento());
             stmt.setString(4, agendamento.getHorario());
             stmt.setString(5, agendamento.getProfissional());
             stmt.setString(6, agendamento.getEspecialidade());
@@ -63,7 +66,8 @@ public class AgendaDao {
             stmt = (PreparedStatement) conn.prepareStatement(sql);
             stmt.setString(1, agendamento.getPaciente_nome());
             stmt.setString(2, agendamento.getDocPaciente());
-            stmt.setString(3, agendamento.getData_agendamento());
+            stmt.setDate(3, new java.sql.Date(agendamento.getData_agendamento().getTime()));
+            //stmt.setString(3, agendamento.getData_agendamento());
             stmt.setString(4, agendamento.getHorario());
             stmt.setString(5, agendamento.getProfissional());
             stmt.setString(6, agendamento.getEspecialidade());
@@ -101,7 +105,8 @@ public class AgendaDao {
                 agendamento.setDocPaciente(rs.getString("doc_paciente"));
                 agendamento.setEspecialidade(rs.getString("exame_especialidade"));
                 agendamento.setProfissional(rs.getString("medico"));
-                agendamento.setData_agendamento(rs.getString("data_agendamento"));
+                agendamento.setData_agendamento(rs.getDate("data_agendamento"));
+                //agendamento.setData_agendamento(rs.getString("data_agendamento"));
                 agendamento.setHorario(rs.getString("hora"));
                 agendamento.setStatus(rs.getString("status"));
                 lista.add(agendamento);
@@ -124,7 +129,8 @@ public class AgendaDao {
                 agendamento.setDocPaciente(rs.getString("doc_paciente"));
                 agendamento.setEspecialidade(rs.getString("exame_especialidade"));
                 agendamento.setProfissional(rs.getString("medico"));
-                agendamento.setData_agendamento(rs.getString("data_agendamento"));
+                 agendamento.setData_agendamento(rs.getDate("data_agendamento"));
+                //agendamento.setData_agendamento(rs.getString("data_agendamento"));
                 agendamento.setHorario(rs.getString("hora"));
                 agendamento.setStatus(rs.getString("status"));
                 lista.add(agendamento);
@@ -147,13 +153,14 @@ public class AgendaDao {
         }
     }
 
-    public boolean verificarAgenda(String medico, String data, String hora) {
+    public boolean verificarAgenda(String medico, String hora) {
         boolean check = false;
+        
         try {
-            stmt = conn.prepareStatement("SELECT *FROM agenda WHERE medico = ? and data_agendamento = ? AND hora= ?");
+            stmt = conn.prepareStatement("SELECT *FROM agenda WHERE medico = ?  AND hora= ?");
             stmt.setString(1, medico);
-            stmt.setString(2, data);
-            stmt.setString(3, hora);
+            //stmt.setDate(2,  dia);
+            stmt.setString(2, hora);
             rs = stmt.executeQuery();
 
             if (rs.next()) {

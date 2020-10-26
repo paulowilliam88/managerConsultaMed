@@ -5,6 +5,10 @@
  */
 package model;
 
+import java.applet.Applet;
+import java.applet.AudioClip;
+import java.net.URL;
+
 
 public class Paciente {
   private int idPaciente;  
@@ -50,5 +54,5 @@ public class Paciente {
     public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
-     
+        
 }

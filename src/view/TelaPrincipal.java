@@ -48,6 +48,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         btnAgenda = new javax.swing.JButton();
         btnConsulta = new javax.swing.JButton();
+        btnMedicamento = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         btnFecharBemVindo = new javax.swing.JButton();
         labelFundo = new javax.swing.JLabel();
@@ -159,6 +160,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         frameInterno.add(btnConsulta);
         btnConsulta.setBounds(370, 0, 90, 60);
 
+        btnMedicamento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/iconMedicamentos.png"))); // NOI18N
+        btnMedicamento.setToolTipText("Medicamentos");
+        frameInterno.add(btnMedicamento);
+        btnMedicamento.setBounds(380, 100, 70, 60);
+
         internalFrameBemVindo.getContentPane().add(frameInterno);
         frameInterno.setBounds(0, 60, 500, 180);
 
@@ -178,7 +184,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         btnFecharBemVindo.setBounds(380, 10, 70, 26);
 
         getContentPane().add(internalFrameBemVindo);
-        internalFrameBemVindo.setBounds(30, 80, 500, 260);
+        internalFrameBemVindo.setBounds(30, 50, 500, 290);
 
         labelFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/0798adf9c191e928d86114726aaee261.jpg"))); // NOI18N
         labelFundo.setText("jLabel3");
@@ -373,7 +379,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         } else {
 
             Connection conn = (Connection) new Conexao().getConexao();
-            String src = "agenda.jasper";
+            String src = "report1.jasper";
             JasperPrint jasperPrint = null;
 
             try {
@@ -463,6 +469,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnCadPacientes;
     private javax.swing.JButton btnConsulta;
     private javax.swing.JButton btnFecharBemVindo;
+    private javax.swing.JButton btnMedicamento;
     private javax.swing.JMenuItem cadEnfermeiro;
     private javax.swing.JMenuItem cadMedico;
     private javax.swing.JMenuItem cadPaciente;

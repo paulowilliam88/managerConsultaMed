@@ -47,13 +47,13 @@ public AgendaTabModel(ArrayList<Agenda>l){
     }
     @Override
     public String getColumnName(int colunas){
-        if(colunas==COL_ID_AGENDAMENTO)return"Nº Agendamento";
-        if(colunas==COL_NOME_PACIENTE)return"Paciente";
-        if(colunas==COL_RG_PACIENTE)return"Nº do Documento";
+        if(colunas==COL_ID_AGENDAMENTO)return"Nº";
+        if(colunas==COL_NOME_PACIENTE)return"Nome";
+        if(colunas==COL_RG_PACIENTE)return"RG";
         if(colunas==COL_ESPECIALIDADE)return "Especialidade";
-        if(colunas==COL_PROFISSIONAL)return "Profissional";
+        if(colunas==COL_PROFISSIONAL)return "Médio";
         if(colunas==COL_DATA_AGENDAMENTO)return "Data";
-        if(colunas==COL_HORARIO)return "Horário";
+        if(colunas==COL_HORARIO)return "Hora";
         if(colunas==COL_STATUS)return "Status";
         return "";
     }

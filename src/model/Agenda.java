@@ -1,10 +1,12 @@
 package model;
 
+import java.util.Date;
+
 public class Agenda {
     private int id_agendamento;
     private String paciente_nome;
     private String docPaciente;
-    private String data_agendamento;
+    private Date data_agendamento;
     private String horario;
     private String profissional;
     private String especialidade;
@@ -35,13 +37,15 @@ public class Agenda {
         this.paciente_nome = paciente_nome;
     }
 
-    public String getData_agendamento() {
+    public Date getData_agendamento() {
         return data_agendamento;
     }
 
-    public void setData_agendamento(String data_agendamento) {
+    public void setData_agendamento(Date data_agendamento) {
         this.data_agendamento = data_agendamento;
     }
+
+    
 
     public String getHorario() {
         return horario;

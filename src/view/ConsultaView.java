@@ -36,6 +36,8 @@ public class ConsultaView extends javax.swing.JFrame {
         txtDataAtendimento.setEnabled(false);
         txtDataAtendimento.setEnabled(false);
         txtRgPaciente.setEnabled(false);
+        txtIdAgendamento.setVisible(false);
+        
 
     }
 
@@ -51,7 +53,6 @@ public class ConsultaView extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         txtPacienteAtendimento = new javax.swing.JTextField();
         txtRepousoDias = new javax.swing.JTextField();
@@ -73,29 +74,46 @@ public class ConsultaView extends javax.swing.JFrame {
         txtRgPaciente = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         txtIdAgendamento = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
+        getContentPane().setLayout(null);
 
         jLabel1.setText("Atendimento");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(325, 16, 72, 16);
 
         jLabel2.setText("Busca Agendamentos:");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(40, 60, 128, 16);
 
-        jLabel4.setText("Repouso de ");
-
-        jLabel5.setText("dias.");
+        jLabel4.setText("Dias de repouso:");
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(40, 103, 110, 16);
 
         jLabel6.setText("Data:");
+        getContentPane().add(jLabel6);
+        jLabel6.setBounds(40, 145, 29, 16);
 
         txtPacienteAtendimento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtPacienteAtendimentoActionPerformed(evt);
             }
         });
+        getContentPane().add(txtPacienteAtendimento);
+        txtPacienteAtendimento.setBounds(180, 60, 136, 24);
+        getContentPane().add(txtRepousoDias);
+        txtRepousoDias.setBounds(160, 100, 32, 24);
+        getContentPane().add(txtDataAtendimento);
+        txtDataAtendimento.setBounds(81, 141, 96, 24);
 
         areaTxtInfoAtestado.setColumns(20);
         areaTxtInfoAtestado.setRows(5);
         jScrollPane1.setViewportView(areaTxtInfoAtestado);
+
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(40, 360, 618, 100);
 
         frameTabelaAtendimento.setVisible(true);
 
@@ -133,156 +151,77 @@ public class ConsultaView extends javax.swing.JFrame {
                 .addGap(0, 18, Short.MAX_VALUE))
         );
 
-        btnImprimirAtestado.setText("Imprimir Atestado");
+        getContentPane().add(frameTabelaAtendimento);
+        frameTabelaAtendimento.setBounds(40, 171, 627, 127);
+
+        btnImprimirAtestado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/iconBtnImprimir.png"))); // NOI18N
+        btnImprimirAtestado.setToolTipText("Imprimir Atestado");
+        btnImprimirAtestado.setBorder(null);
         btnImprimirAtestado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnImprimirAtestadoActionPerformed(evt);
             }
         });
+        getContentPane().add(btnImprimirAtestado);
+        btnImprimirAtestado.setBounds(610, 470, 50, 45);
 
         jLabel7.setText("Informações e recomendaçoes.");
+        getContentPane().add(jLabel7);
+        jLabel7.setBounds(40, 340, 204, 16);
 
-        btnSalvarAtestado.setText("Novo Atendimento");
+        btnSalvarAtestado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/limpar.png"))); // NOI18N
+        btnSalvarAtestado.setToolTipText("Iniciar novo atendimento");
+        btnSalvarAtestado.setBorder(null);
+        btnSalvarAtestado.setPreferredSize(new java.awt.Dimension(70, 56));
         btnSalvarAtestado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSalvarAtestadoActionPerformed(evt);
             }
         });
+        getContentPane().add(btnSalvarAtestado);
+        btnSalvarAtestado.setBounds(540, 470, 50, 45);
 
         jLabel8.setText("CID:");
+        getContentPane().add(jLabel8);
+        jLabel8.setBounds(40, 310, 30, 20);
+        getContentPane().add(txtCid);
+        txtCid.setBounds(90, 310, 86, 24);
 
         jLabel9.setText("Hora:");
+        getContentPane().add(jLabel9);
+        jLabel9.setBounds(195, 145, 40, 16);
+        getContentPane().add(txtHora);
+        txtHora.setBounds(241, 141, 70, 24);
 
-        cb_Agenda_Status.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Agendado", "Atendido", "Cancelado", " " }));
+        cb_Agenda_Status.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Atendido", "Ausente" }));
+        getContentPane().add(cb_Agenda_Status);
+        cb_Agenda_Status.setBounds(567, 55, 90, 26);
 
         jLabel10.setText("Status:");
+        getContentPane().add(jLabel10);
+        jLabel10.setBounds(520, 60, 40, 16);
+        getContentPane().add(txtRgPaciente);
+        txtRgPaciente.setBounds(370, 60, 100, 24);
 
         jLabel3.setText("RG:");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(325, 64, 30, 16);
 
         txtIdAgendamento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtIdAgendamentoActionPerformed(evt);
             }
         });
+        getContentPane().add(txtIdAgendamento);
+        txtIdAgendamento.setBounds(358, 141, 33, 24);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(325, 325, 325)
-                .addComponent(jLabel1))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(jLabel2)
-                .addGap(18, 18, 18)
-                .addComponent(txtPacienteAtendimento, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
-                .addComponent(jLabel3)
-                .addGap(6, 6, 6)
-                .addComponent(txtRgPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(74, 74, 74)
-                .addComponent(jLabel10)
-                .addGap(6, 6, 6)
-                .addComponent(cb_Agenda_Status, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addComponent(jLabel4)
-                .addGap(6, 6, 6)
-                .addComponent(txtRepousoDias, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
-                .addComponent(jLabel5))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addComponent(jLabel6)
-                .addGap(12, 12, 12)
-                .addComponent(txtDataAtendimento, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(6, 6, 6)
-                .addComponent(txtHora, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(47, 47, 47)
-                .addComponent(txtIdAgendamento, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addComponent(frameTabelaAtendimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(jLabel8)
-                .addGap(18, 18, 18)
-                .addComponent(txtCid, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 618, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(381, 381, 381)
-                .addComponent(btnSalvarAtestado)
-                .addGap(12, 12, 12)
-                .addComponent(btnImprimirAtestado))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(jLabel1)
-                .addGap(23, 23, 23)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(9, 9, 9)
-                        .addComponent(jLabel2))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(5, 5, 5)
-                        .addComponent(txtPacienteAtendimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(9, 9, 9)
-                        .addComponent(jLabel3))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(5, 5, 5)
-                        .addComponent(txtRgPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(5, 5, 5)
-                        .addComponent(jLabel10))
-                    .addComponent(cb_Agenda_Status, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(15, 15, 15)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtRepousoDias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(4, 4, 4)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5))))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtDataAtendimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtIdAgendamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(4, 4, 4)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel9))))
-                .addGap(6, 6, 6)
-                .addComponent(frameTabelaAtendimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(6, 6, 6)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(4, 4, 4)
-                        .addComponent(jLabel8))
-                    .addComponent(txtCid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jLabel7)
-                .addGap(3, 3, 3)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(6, 6, 6)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnSalvarAtestado)
-                    .addComponent(btnImprimirAtestado)))
-        );
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/consultaFundo.png"))); // NOI18N
+        jLabel11.setToolTipText("");
+        getContentPane().add(jLabel11);
+        jLabel11.setBounds(0, -4, 680, 530);
 
-        pack();
+        setSize(new java.awt.Dimension(695, 561));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtPacienteAtendimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPacienteAtendimentoActionPerformed
@@ -292,7 +231,15 @@ public class ConsultaView extends javax.swing.JFrame {
     }//GEN-LAST:event_txtPacienteAtendimentoActionPerformed
 
     private void btnSalvarAtestadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarAtestadoActionPerformed
-        consulDao.gerarAtendimento();
+        txtPacienteAtendimento.setText("");
+        txtRepousoDias.setText("");
+        txtCid.setText("");
+        txtDataAtendimento.setText("");
+        txtHora.setText("");
+        txtRepousoDias.setText("");
+        txtRgPaciente.setText("");
+        areaTxtInfoAtestado.setText("");
+        
     }//GEN-LAST:event_btnSalvarAtestadoActionPerformed
 
     private void tb_AgendamentoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_AgendamentoMouseClicked
@@ -323,7 +270,7 @@ public class ConsultaView extends javax.swing.JFrame {
         Connection conn = (Connection) new Conexao().getConexao();
         String src = "atestado.jasper";
         JasperPrint jasperPrint = null;
-
+        
         try {
             jasperPrint = JasperFillManager.fillReport(src, null, conn);
         } catch (Exception ex) {
@@ -332,6 +279,7 @@ public class ConsultaView extends javax.swing.JFrame {
         JasperViewer view = new JasperViewer(jasperPrint, false);
         view.setVisible(true);
         tb_Agendamento.setModel(new AgendaTabModel(new AgendaDao().listarAgendamento()));
+        consulDao.gerarAtendimento();
     }//GEN-LAST:event_btnImprimirAtestadoActionPerformed
 
     private void txtIdAgendamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdAgendamentoActionPerformed
@@ -381,10 +329,10 @@ public class ConsultaView extends javax.swing.JFrame {
     private javax.swing.JInternalFrame frameTabelaAtendimento;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
