@@ -24,7 +24,7 @@ public class ConexaoTest extends TestCase {
         Conexao conn = new Conexao();
         conn.getConexao();
       
-        //assertNull(conn);
+        assertNull(conn.getConexao());
     }
             
             

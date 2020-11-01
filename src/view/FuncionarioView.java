@@ -6,6 +6,9 @@
 package view;
 
 import dao.FuncionarioDao;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.net.URL;
 import javax.swing.JOptionPane;
 import model.Funcionario;
 import table.FuncionarioTabModel;
@@ -21,6 +24,9 @@ public class FuncionarioView extends javax.swing.JFrame {
 
     public FuncionarioView() {
         initComponents();
+        URL url = this.getClass().getResource("/imagens/iconeSistema.jpg");
+        Image iconeTitulo = Toolkit.getDefaultToolkit().getImage(url);
+        this.setIconImage(iconeTitulo);
         setLocationRelativeTo(null);
         tbFuncionario.setModel(new FuncionarioTabModel(new FuncionarioDao().listarFuncionario()));
         txtIdFuncionario.setEnabled(false);
@@ -72,29 +78,39 @@ public class FuncionarioView extends javax.swing.JFrame {
         getContentPane().setLayout(null);
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel1.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("ID:");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(30, 60, 14, 16);
+        jLabel1.setBounds(34, 50, 20, 20);
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel2.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Nome:");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(30, 90, 36, 16);
+        jLabel2.setBounds(26, 90, 40, 16);
 
         jLabel3.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel3.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Cargo:");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(340, 90, 37, 16);
+        jLabel3.setBounds(330, 86, 40, 20);
 
         jLabel4.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel4.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Acesso:");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(20, 120, 46, 16);
+        jLabel4.setBounds(16, 120, 50, 16);
 
         jLabel5.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel5.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Senha:");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(340, 130, 39, 16);
+        jLabel5.setBounds(329, 126, 50, 20);
 
         txtIdFuncionario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -177,6 +193,7 @@ public class FuncionarioView extends javax.swing.JFrame {
         btnApagarFuncionario.setBounds(450, 170, 50, 40);
 
         jLabel6.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("PESQUISAR:");
         getContentPane().add(jLabel6);
         jLabel6.setBounds(117, 347, 70, 16);
@@ -191,11 +208,14 @@ public class FuncionarioView extends javax.swing.JFrame {
 
         jLabel8.setBackground(new java.awt.Color(255, 255, 255));
         jLabel8.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("Cadastro de Funcionários");
         getContentPane().add(jLabel8);
         jLabel8.setBounds(180, 10, 164, 19);
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/fundoFuncionarios.png"))); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/fundomedio.jpg"))); // NOI18N
         getContentPane().add(jLabel7);
         jLabel7.setBounds(1, 6, 520, 390);
 

@@ -2,7 +2,7 @@ package dao;
 
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
-import com.mysql.jdbc.Statement;
+import java.sql.Statement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import model.Paciente;
@@ -125,5 +125,20 @@ public class PacienteDao {
             JOptionPane.showConfirmDialog(null, "Erro " + e);
         }
         return lista;
+    }
+    public int contarPaciente(int num) throws SQLException{
+        String sql = "SELECT COUNT(DISTINCT nome_paciente) FROM paciente";
+        num =Integer.valueOf(rs.getInt(0));
+        try{
+        st = conn.createStatement();
+        rs = st.executeQuery(sql);
+        while(rs.next()){
+            Paciente paciente = new Paciente();
+            paciente.setNome(rs.getString("nome_paciente"));
+        }
+        }catch(SQLException e){
+            throw new RuntimeException("erro"+e);
+        }
+        return num;
     }
 }

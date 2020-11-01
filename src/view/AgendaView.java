@@ -8,7 +8,11 @@ package view;
 import dao.AgendaDao;
 import dao.MedicoDao;
 import dao.PacienteDao;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.net.URL;
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import model.Agenda;
@@ -28,6 +32,9 @@ public class AgendaView extends javax.swing.JFrame {
 
     public AgendaView() {
         initComponents();
+        URL url = this.getClass().getResource("/imagens/iconeSistema.jpg");
+        Image iconeTitulo = Toolkit.getDefaultToolkit().getImage(url);
+        this.setIconImage(iconeTitulo);
         tb_Agendamento.setModel(new AgendaTabModel(new AgendaDao().listarAgendamento()));
         txtNumeroAgendamento.setEditable(false);
         txtNumeroAgendamento.setVisible(false);
@@ -278,9 +285,44 @@ public class AgendaView extends javax.swing.JFrame {
         jPanel1.add(cbHorario);
         cbHorario.setBounds(60, 170, 90, 26);
 
+        calendario.addContainerListener(new java.awt.event.ContainerAdapter() {
+            public void componentAdded(java.awt.event.ContainerEvent evt) {
+                calendarioComponentAdded(evt);
+            }
+        });
+        calendario.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                calendarioAncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
         calendario.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 calendarioMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                calendarioMouseEntered(evt);
+            }
+        });
+        calendario.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                calendarioPropertyChange(evt);
+            }
+        });
+        calendario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                calendarioKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                calendarioKeyTyped(evt);
+            }
+        });
+        calendario.addVetoableChangeListener(new java.beans.VetoableChangeListener() {
+            public void vetoableChange(java.beans.PropertyChangeEvent evt)throws java.beans.PropertyVetoException {
+                calendarioVetoableChange(evt);
             }
         });
         jPanel1.add(calendario);
@@ -362,17 +404,24 @@ public class AgendaView extends javax.swing.JFrame {
         agenda.setEspecialidade(txt_Agenda_Especialidade.getText());
         agenda.setHorario(cbHorario.getSelectedItem().toString());
         agenda.setData_agendamento(calendario.getDate());
-        //agenda.setData_agendamento(cbDia.getSelectedItem().toString()+cbMes.getSelectedItem()+cbAno.getSelectedItem());
-        //agenda.setHorario(txt_Agenda_Horario.getText());
         agenda.setStatus("Agendado");
-        /*if(txt_Agenda_Data.getText()==null||txt_Agenda_Data.getText().trim().equals("")){
-            JOptionPane.showMessageDialog(null,"ERRO:");
-        }*/
+        
+        SimpleDateFormat dtAgenda = new SimpleDateFormat("yyyy/MM/dd");
+        String dtAg = dtAgenda.format(calendario.getDate());
+           
+        
+      if(agDao.checkAgenda(agenda.getProfissional(),dtAg, agenda.getHorario())){
+          JOptionPane.showMessageDialog(null, "Já existe Agendamento para esta data e horário!");
+          tb_Agendamento.setModel(new AgendaTabModel(new AgendaDao().listarAgendamento()));
+      }else{
+          agDao.agendarConsulta(agenda);
+            tb_Agendamento.setModel(new AgendaTabModel(new AgendaDao().listarAgendamento()));
+      }
 
         //Date data = (Date) calendario.getDate();
-
-            agDao.agendarConsulta(agenda);
-            tb_Agendamento.setModel(new AgendaTabModel(new AgendaDao().listarAgendamento()));
+//        agDao.agendarConsulta(agenda);
+//            tb_Agendamento.setModel(new AgendaTabModel(new AgendaDao().listarAgendamento()));
+            
         
 ////                //.getSelectedItem().toString()+cbMes.getSelectedItem()+
 //                //cbAno.getSelectedItem()), cbHorario.getSelectedItem().toString())) {
@@ -391,8 +440,36 @@ public class AgendaView extends javax.swing.JFrame {
     }//GEN-LAST:event_tb_AgendamentoMouseClicked
 
     private void calendarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_calendarioMouseClicked
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_calendarioMouseClicked
+
+    private void calendarioPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_calendarioPropertyChange
+
+    }//GEN-LAST:event_calendarioPropertyChange
+
+    private void calendarioVetoableChange(java.beans.PropertyChangeEvent evt)throws java.beans.PropertyVetoException {//GEN-FIRST:event_calendarioVetoableChange
+        // TODO add your handling code here:
+    }//GEN-LAST:event_calendarioVetoableChange
+
+    private void calendarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_calendarioKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_calendarioKeyPressed
+
+    private void calendarioComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_calendarioComponentAdded
+        // TODO add your handling code here:
+    }//GEN-LAST:event_calendarioComponentAdded
+
+    private void calendarioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_calendarioMouseEntered
+        
+    }//GEN-LAST:event_calendarioMouseEntered
+
+    private void calendarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_calendarioKeyTyped
+  
+    }//GEN-LAST:event_calendarioKeyTyped
+
+    private void calendarioAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_calendarioAncestorAdded
+   
+    }//GEN-LAST:event_calendarioAncestorAdded
 
     /**
      * @param args the command line arguments

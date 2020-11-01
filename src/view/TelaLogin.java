@@ -8,7 +8,11 @@ package view;
 import dao.Conexao;
 import dao.FuncionarioDao;
 import dao.MedicoDao;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.net.URL;
 import java.sql.SQLException;
+import java.util.Date;
 import javax.swing.JOptionPane;
 
 /**
@@ -21,7 +25,11 @@ public class TelaLogin extends javax.swing.JFrame {
     public TelaLogin() {
 
         initComponents();
-        //conn.conexao();
+        URL url = this.getClass().getResource("/imagens/iconeSistema.jpg");
+        Image iconeTitulo = Toolkit.getDefaultToolkit().getImage(url);
+        this.setIconImage(iconeTitulo);
+        
+        
     }
 
     /**

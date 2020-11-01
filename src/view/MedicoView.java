@@ -3,6 +3,9 @@ package view;
 import com.mysql.jdbc.Connection;
 import dao.Conexao;
 import dao.MedicoDao;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.net.URL;
 import model.Medico;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -17,8 +20,12 @@ public class MedicoView extends javax.swing.JFrame {
 
     public MedicoView() {
         initComponents();
+        URL url = this.getClass().getResource("/imagens/iconeSistema.jpg");
+        Image iconeTitulo = Toolkit.getDefaultToolkit().getImage(url);
+        this.setIconImage(iconeTitulo);
         setLocationRelativeTo(null);
         tbMedico.setModel(new MedicoTabModel(new MedicoDao().listarTodos()));
+        btnRelatorioMedicos.setVisible(false);
     }
 
     /**
@@ -251,7 +258,6 @@ public class MedicoView extends javax.swing.JFrame {
         }
         JasperViewer view = new JasperViewer(jasperPrint, false);
         view.setVisible(true);
-
     }//GEN-LAST:event_btnRelatorioMedicosActionPerformed
 
     /**

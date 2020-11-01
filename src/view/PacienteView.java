@@ -6,6 +6,13 @@
 package view;
 
 import dao.PacienteDao;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.net.URL;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import model.Paciente;
 import table.PacienteTabModel;
 
@@ -14,14 +21,21 @@ import table.PacienteTabModel;
  * @author Paulo
  */
 public class PacienteView extends javax.swing.JFrame {
+
     Paciente pac = new Paciente();
     PacienteDao pacdao = new PacienteDao();
     AgendaView agv = new AgendaView();
-  
-    public PacienteView() {
+
+    public PacienteView() throws SQLException {
         initComponents();
+        URL url = this.getClass().getResource("/imagens/iconeSistema.jpg");
+        Image iconeTitulo = Toolkit.getDefaultToolkit().getImage(url);
+        this.setIconImage(iconeTitulo);
         setLocationRelativeTo(null);
+        txt_Id_Paciente.setEnabled(false);
+        txt_Id_Paciente.setEditable(false);
         Tabela_Paciente.setModel(new PacienteTabModel(new PacienteDao().listarPaciente()));
+
         //txt_Id_Paciente.setEditable(false);
         //txt_Id_Paciente.setEnabled(false);
     }
@@ -35,6 +49,7 @@ public class PacienteView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        txtCont = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -59,19 +74,25 @@ public class PacienteView extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
         getContentPane().setLayout(null);
+        getContentPane().add(txtCont);
+        txtCont.setBounds(410, 410, 15, 24);
 
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Nº Prontuário:");
         getContentPane().add(jLabel1);
         jLabel1.setBounds(16, 70, 78, 16);
 
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Nome:");
         getContentPane().add(jLabel2);
         jLabel2.setBounds(16, 106, 36, 16);
 
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Nº RG: ");
         getContentPane().add(jLabel3);
         jLabel3.setBounds(16, 136, 37, 16);
 
+        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Idade:");
         getContentPane().add(jLabel4);
         jLabel4.setBounds(398, 106, 34, 16);
@@ -96,6 +117,7 @@ public class PacienteView extends javax.swing.JFrame {
         getContentPane().add(txt_Idade_Paciente);
         txt_Idade_Paciente.setBounds(438, 102, 31, 24);
 
+        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Telefone: ");
         getContentPane().add(jLabel5);
         jLabel5.setBounds(16, 166, 55, 16);
@@ -130,6 +152,7 @@ public class PacienteView extends javax.swing.JFrame {
         getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(16, 266, 453, 96);
 
+        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Cadastro de Pacientes");
         getContentPane().add(jLabel6);
         jLabel6.setBounds(180, 20, 129, 16);
@@ -182,6 +205,7 @@ public class PacienteView extends javax.swing.JFrame {
         getContentPane().add(btnApagarPaciente);
         btnApagarPaciente.setBounds(407, 206, 62, 48);
 
+        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/fundotelaPaciente.png"))); // NOI18N
         jLabel8.setText("jLabel8");
         getContentPane().add(jLabel8);
@@ -224,33 +248,37 @@ public class PacienteView extends javax.swing.JFrame {
         pac.setTelefone(txt_Telefone_Paciente.getText());
         pacdao.atualizarPaciente(pac);
         Tabela_Paciente.setModel(new PacienteTabModel(new PacienteDao().listarPaciente()));
-        
-        
+
+
     }//GEN-LAST:event_btnEditarPacienteActionPerformed
 
     private void txt_Buscar_PacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_Buscar_PacienteActionPerformed
         String pesquisa = txt_Buscar_Paciente.getText();
         Tabela_Paciente.setModel(new PacienteTabModel(new PacienteDao().buscarPaciente(pesquisa)));
-      
+
     }//GEN-LAST:event_txt_Buscar_PacienteActionPerformed
 
     private void Tabela_PacienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Tabela_PacienteMouseClicked
         //campoTexto.setText=> seta o valor no campo de text
         //Tabela.getValueAt=> pega o valor da tabela
         //  
-        txt_Id_Paciente.setText(Tabela_Paciente.getValueAt(Tabela_Paciente.getSelectedRow(),PacienteTabModel.COL_ID_PACIENTE).toString());
-        txt_Nome_Paciente.setText(Tabela_Paciente.getValueAt(Tabela_Paciente.getSelectedRow(),PacienteTabModel.COL_NOME_PACIENTE).toString());
-        txt_Rg_Paciente.setText(Tabela_Paciente.getValueAt(Tabela_Paciente.getSelectedRow(),PacienteTabModel.COL_RG_PACIENTE).toString());
-        txt_Idade_Paciente.setText(Tabela_Paciente.getValueAt(Tabela_Paciente.getSelectedRow(),PacienteTabModel.COL_IDADE_PACIENTE).toString());
-        txt_Telefone_Paciente.setText(Tabela_Paciente.getValueAt(Tabela_Paciente.getSelectedRow(),PacienteTabModel.COL_TELEFONE_PACIENTE).toString());
-        
+        txt_Id_Paciente.setText(Tabela_Paciente.getValueAt(Tabela_Paciente.getSelectedRow(), PacienteTabModel.COL_ID_PACIENTE).toString());
+        txt_Nome_Paciente.setText(Tabela_Paciente.getValueAt(Tabela_Paciente.getSelectedRow(), PacienteTabModel.COL_NOME_PACIENTE).toString());
+        txt_Rg_Paciente.setText(Tabela_Paciente.getValueAt(Tabela_Paciente.getSelectedRow(), PacienteTabModel.COL_RG_PACIENTE).toString());
+        txt_Idade_Paciente.setText(Tabela_Paciente.getValueAt(Tabela_Paciente.getSelectedRow(), PacienteTabModel.COL_IDADE_PACIENTE).toString());
+        txt_Telefone_Paciente.setText(Tabela_Paciente.getValueAt(Tabela_Paciente.getSelectedRow(), PacienteTabModel.COL_TELEFONE_PACIENTE).toString());
+
     }//GEN-LAST:event_Tabela_PacienteMouseClicked
 
     private void btnApagarPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnApagarPacienteActionPerformed
-        int codigo  =  Integer.parseInt(txt_Id_Paciente.getText());
-        pacdao.excluirPaciente(codigo);
-        Tabela_Paciente.setModel(new PacienteTabModel(new PacienteDao().listarPaciente()));
-        
+        int op = JOptionPane.showConfirmDialog(null, "Deseje excluir o registro selecionado?");
+        if (op == 0) {
+            int codigo = Integer.parseInt(txt_Id_Paciente.getText());
+            pacdao.excluirPaciente(codigo);
+            Tabela_Paciente.setModel(new PacienteTabModel(new PacienteDao().listarPaciente()));
+        } else {
+            Tabela_Paciente.setModel(new PacienteTabModel(new PacienteDao().listarPaciente()));
+        }
     }//GEN-LAST:event_btnApagarPacienteActionPerformed
 
     private void txt_Telefone_PacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_Telefone_PacienteActionPerformed
@@ -290,7 +318,11 @@ public class PacienteView extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PacienteView().setVisible(true);
+                try {
+                    new PacienteView().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(PacienteView.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -310,6 +342,7 @@ public class PacienteView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField txtCont;
     private javax.swing.JTextField txt_Buscar_Paciente;
     private javax.swing.JTextField txt_Id_Paciente;
     private javax.swing.JTextField txt_Idade_Paciente;

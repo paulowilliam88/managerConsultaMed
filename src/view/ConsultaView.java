@@ -10,6 +10,9 @@ import dao.AgendaDao;
 import dao.Conexao;
 import dao.ConsultaDao;
 import dao.PacienteDao;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.net.URL;
 import javax.swing.JOptionPane;
 import javax.swing.table.AbstractTableModel;
 import model.Agenda;
@@ -31,14 +34,23 @@ public class ConsultaView extends javax.swing.JFrame {
     Agenda ag = new Agenda();
     AgendaDao agDao = new AgendaDao();
 
-    public ConsultaView() {
+    public ConsultaView(String usuario) {
         initComponents();
+        URL url = this.getClass().getResource("/imagens/iconeSistema.jpg");
+        Image iconeTitulo = Toolkit.getDefaultToolkit().getImage(url);
+        this.setIconImage(iconeTitulo);
         txtDataAtendimento.setEnabled(false);
         txtDataAtendimento.setEnabled(false);
         txtRgPaciente.setEnabled(false);
         txtIdAgendamento.setVisible(false);
+        lbusuarioMedico.setText(usuario);
+        
         
 
+    }
+
+    private ConsultaView() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**
@@ -51,6 +63,8 @@ public class ConsultaView extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+        lbusuarioMedico = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -69,8 +83,6 @@ public class ConsultaView extends javax.swing.JFrame {
         txtCid = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         txtHora = new javax.swing.JTextField();
-        cb_Agenda_Status = new javax.swing.JComboBox<>();
-        jLabel10 = new javax.swing.JLabel();
         txtRgPaciente = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         txtIdAgendamento = new javax.swing.JTextField();
@@ -80,21 +92,35 @@ public class ConsultaView extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(null);
 
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Atendimento");
         getContentPane().add(jLabel1);
         jLabel1.setBounds(325, 16, 72, 16);
 
+        lbusuarioMedico.setForeground(new java.awt.Color(0, 0, 0));
+        lbusuarioMedico.setPreferredSize(new java.awt.Dimension(47, 16));
+        getContentPane().add(lbusuarioMedico);
+        lbusuarioMedico.setBounds(90, 500, 120, 16);
+
+        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel5.setText("Usuário:");
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(40, 500, 50, 16);
+
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Busca Agendamentos:");
         getContentPane().add(jLabel2);
         jLabel2.setBounds(40, 60, 128, 16);
 
+        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Dias de repouso:");
         getContentPane().add(jLabel4);
         jLabel4.setBounds(40, 103, 110, 16);
 
+        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Data:");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(40, 145, 29, 16);
+        jLabel6.setBounds(530, 60, 29, 20);
 
         txtPacienteAtendimento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -106,7 +132,7 @@ public class ConsultaView extends javax.swing.JFrame {
         getContentPane().add(txtRepousoDias);
         txtRepousoDias.setBounds(160, 100, 32, 24);
         getContentPane().add(txtDataAtendimento);
-        txtDataAtendimento.setBounds(81, 141, 96, 24);
+        txtDataAtendimento.setBounds(570, 60, 96, 24);
 
         areaTxtInfoAtestado.setColumns(20);
         areaTxtInfoAtestado.setRows(5);
@@ -181,28 +207,23 @@ public class ConsultaView extends javax.swing.JFrame {
         getContentPane().add(btnSalvarAtestado);
         btnSalvarAtestado.setBounds(540, 470, 50, 45);
 
+        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("CID:");
         getContentPane().add(jLabel8);
-        jLabel8.setBounds(40, 310, 30, 20);
+        jLabel8.setBounds(60, 130, 30, 20);
         getContentPane().add(txtCid);
-        txtCid.setBounds(90, 310, 86, 24);
+        txtCid.setBounds(110, 130, 86, 24);
 
+        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
         jLabel9.setText("Hora:");
         getContentPane().add(jLabel9);
-        jLabel9.setBounds(195, 145, 40, 16);
+        jLabel9.setBounds(530, 90, 40, 16);
         getContentPane().add(txtHora);
-        txtHora.setBounds(241, 141, 70, 24);
-
-        cb_Agenda_Status.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Atendido", "Ausente" }));
-        getContentPane().add(cb_Agenda_Status);
-        cb_Agenda_Status.setBounds(567, 55, 90, 26);
-
-        jLabel10.setText("Status:");
-        getContentPane().add(jLabel10);
-        jLabel10.setBounds(520, 60, 40, 16);
+        txtHora.setBounds(570, 90, 70, 24);
         getContentPane().add(txtRgPaciente);
         txtRgPaciente.setBounds(370, 60, 100, 24);
 
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("RG:");
         getContentPane().add(jLabel3);
         jLabel3.setBounds(325, 64, 30, 16);
@@ -215,6 +236,7 @@ public class ConsultaView extends javax.swing.JFrame {
         getContentPane().add(txtIdAgendamento);
         txtIdAgendamento.setBounds(358, 141, 33, 24);
 
+        jLabel11.setForeground(new java.awt.Color(0, 0, 0));
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/consultaFundo.png"))); // NOI18N
         jLabel11.setToolTipText("");
         getContentPane().add(jLabel11);
@@ -226,7 +248,9 @@ public class ConsultaView extends javax.swing.JFrame {
 
     private void txtPacienteAtendimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPacienteAtendimentoActionPerformed
         String pesquisa = txtPacienteAtendimento.getText();
-        tb_Agendamento.setModel(new AgendaTabModel(new AgendaDao().buscarAgendamento(pesquisa)));
+        tb_Agendamento.setModel(new AgendaTabModel(new AgendaDao().buscarAgendamentoPeloMedico(lbusuarioMedico.getText())));
+
+        //tb_Agendamento.setModel(new AgendaTabModel(new AgendaDao().buscarAgendamento(pesquisa)));
         frameTabelaAtendimento.setVisible(true); // TODO add your handling code here:
     }//GEN-LAST:event_txtPacienteAtendimentoActionPerformed
 
@@ -264,7 +288,7 @@ public class ConsultaView extends javax.swing.JFrame {
         //Atualizando o Status do agendamento
         int codAgenda = Integer.parseInt(txtIdAgendamento.getText());
         ag.setId_agendamento(codAgenda);
-        ag.setStatus(cb_Agenda_Status.getSelectedItem().toString());
+        ag.setStatus("Atendido");
         agDao.alterarStatus(ag);
         //Gerando arquivo em pdf com os dados informados.
         Connection conn = (Connection) new Conexao().getConexao();
@@ -325,20 +349,20 @@ public class ConsultaView extends javax.swing.JFrame {
     private javax.swing.JTextArea areaTxtInfoAtestado;
     private javax.swing.JButton btnImprimirAtestado;
     private javax.swing.JButton btnSalvarAtestado;
-    private javax.swing.JComboBox<String> cb_Agenda_Status;
     private javax.swing.JInternalFrame frameTabelaAtendimento;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel lbusuarioMedico;
     private javax.swing.JTable tb_Agendamento;
     private javax.swing.JTextField txtCid;
     private javax.swing.JTextField txtDataAtendimento;

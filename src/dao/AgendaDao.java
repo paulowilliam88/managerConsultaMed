@@ -1,4 +1,5 @@
 package dao;
+
 import java.sql.PreparedStatement;
 import java.sql.Statement;
 import com.mysql.jdbc.Connection;
@@ -9,7 +10,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.sql.Date;
 import model.Agenda;
-
 
 public class AgendaDao {
 
@@ -80,19 +80,6 @@ public class AgendaDao {
         }
     }
 
-    /* public void alterarStatusAgenda (Agenda agendamento){
-       String sql = "UPDATE agenda SET status=? WHERE id_agendamento=?";
-        try{
-                   stmt = (PreparedStatement) conn.prepareStatement(sql);
-                   
-                   stmt.setString(1,agendamento.getStatus());
-                   stmt.setInt(2,agendamento.getId_agendamento());
-                   stmt.execute();
-                   stmt.close();
-        }catch(SQLException e){
-            throw new RuntimeException(""+e);
-        }
-    }*/
     public ArrayList<Agenda> listarAgendamento() {
         String sql = "SELECT * FROM agenda";
         try {
@@ -129,7 +116,7 @@ public class AgendaDao {
                 agendamento.setDocPaciente(rs.getString("doc_paciente"));
                 agendamento.setEspecialidade(rs.getString("exame_especialidade"));
                 agendamento.setProfissional(rs.getString("medico"));
-                 agendamento.setData_agendamento(rs.getDate("data_agendamento"));
+                agendamento.setData_agendamento(rs.getDate("data_agendamento"));
                 //agendamento.setData_agendamento(rs.getString("data_agendamento"));
                 agendamento.setHorario(rs.getString("hora"));
                 agendamento.setStatus(rs.getString("status"));
@@ -155,7 +142,7 @@ public class AgendaDao {
 
     public boolean verificarAgenda(String medico, String hora) {
         boolean check = false;
-        
+
         try {
             stmt = conn.prepareStatement("SELECT *FROM agenda WHERE medico = ?  AND hora= ?");
             stmt.setString(1, medico);
@@ -167,9 +154,76 @@ public class AgendaDao {
                 check = true;
             }
         } catch (SQLException ex) {
-            System.out.println( "Erro: " + ex);
+            System.out.println("Erro: " + ex);
         }
         return check;
     }
-    
+
+    public ArrayList<Agenda> verificarAgendiaDiaria(String dataAtual) {
+        String sql = "SELECT * FROM agenda WHERE data_agendamento LIKE'%" + dataAtual + "%'";
+        try {
+            st = (Statement) conn.createStatement();
+            rs = st.executeQuery(sql);
+            while (rs.next()) {
+                Agenda agendamento = new Agenda();
+                agendamento.setId_agendamento(rs.getInt("id_agendamento"));
+                agendamento.setPaciente_nome(rs.getString("paciente_name"));
+                agendamento.setDocPaciente(rs.getString("doc_paciente"));
+                agendamento.setEspecialidade(rs.getString("exame_especialidade"));
+                agendamento.setProfissional(rs.getString("medico"));
+                agendamento.setData_agendamento(rs.getDate("data_agendamento"));
+                agendamento.setHorario(rs.getString("hora"));
+                agendamento.setStatus(rs.getString("status"));
+                lista.add(agendamento);
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao buscar: " + e);
+        }
+        return lista;
+    }
+
+    public boolean checkAgenda(String medico, String data, String hora) {
+        boolean checkData = false;
+        try {
+            stmt = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement("SELECT * FROM agenda WHERE medico=? AND data_agendamento=? AND hora=?");
+            stmt.setString(1, medico);
+            stmt.setString(2, data);
+            stmt.setString(3, hora);
+            rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                checkData = true;
+
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro: " + e);
+        }
+        return checkData;
+    }
+
+    public ArrayList<Agenda> buscarAgendamentoPeloMedico(String nomeMedico) {
+        String sql = "SELECT * FROM agenda WHERE medico LIKE'%" + nomeMedico + "%'";
+        try {
+            st = (Statement) conn.createStatement();
+            rs = st.executeQuery(sql);
+            while (rs.next()) {
+                Agenda agendamento = new Agenda();
+                agendamento.setId_agendamento(rs.getInt("id_agendamento"));
+                agendamento.setPaciente_nome(rs.getString("paciente_name"));
+                agendamento.setDocPaciente(rs.getString("doc_paciente"));
+                agendamento.setEspecialidade(rs.getString("exame_especialidade"));
+                agendamento.setProfissional(rs.getString("medico"));
+                agendamento.setData_agendamento(rs.getDate("data_agendamento"));
+                //agendamento.setData_agendamento(rs.getString("data_agendamento"));
+                agendamento.setHorario(rs.getString("hora"));
+                agendamento.setStatus(rs.getString("status"));
+                lista.add(agendamento);
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao buscar: " + e);
+        }
+        return lista;
+    }
 }
